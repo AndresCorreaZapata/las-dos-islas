@@ -1,1 +1,17 @@
-{"name":"Las Dos Islas — EFA Country Simulator","short_name":"Las Dos Islas","description":"Simulador económico experimental basado en Estrategias de Flujo Adaptativo.","start_url":"./","display":"standalone","background_color":"#08111f","theme_color":"#08111f","lang":"es","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "name": "Las Dos Islas — EFA Country Simulator",
+  "short_name": "Las Dos Islas",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#08111f",
+  "theme_color": "#08111f",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

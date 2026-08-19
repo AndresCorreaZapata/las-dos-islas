@@ -23,7 +23,10 @@ canvas{width:100%;height:220px;background:#081320;border-radius:14px;border:1px 
 .log{max-height:220px;overflow:auto;font-size:13px;line-height:1.45}.event{padding:9px;border-bottom:1px solid #1c3148}.event strong{color:#fff}.help{color:var(--muted);line-height:1.55}.score{font-size:44px;font-weight:950;color:var(--gold)}.end{display:none}.end.show{display:block}.tag{display:inline-block;padding:6px 9px;border-radius:8px;background:#1b3048;margin:4px 4px 0 0;color:#cfe0f2}
 @media(max-width:900px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.stats{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr}.world{height:330px}.island{height:150px;width:42%}}
 </style>
-</head>
+<style id="public-v101-css">
+#langSwitch{position:fixed;right:16px;top:16px;z-index:99999;border:1px solid rgba(255,255,255,.25);background:#0b1727;color:#fff;border-radius:999px;padding:9px 14px;font-weight:900;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#publicNote{font-size:12px;color:#91a7c0;margin:12px 0 20px;line-height:1.45}
+</style></head>
 <body>
 <div class="wrap">
   <div class="top">
@@ -193,5 +196,28 @@ function draw(){
 }
 init();
 </script>
-</body>
+<script id="public-v101-js">
+(function(){
+const T={es:{lang:"EN",title:"LAS DOS ISLAS",note:"Simulador experimental. Sus relaciones económicas son mecánicas de juego, no una predicción econométrica.",mission:"Tu misión: gobierna la Isla A durante 12 turnos. Haz crecer el bienestar real, no solo las cifras nominales.",cabinet:"🎛️ Tu gabinete económico",chart:"📈 La economía en movimiento",log:"🧠 Registro de decisiones",play:"⚡ EJECUTAR POLÍTICAS",reset:"↻ Reiniciar",surprise:"🎲 Política sorpresa"},
+en:{lang:"ES",title:"THE TWO ISLANDS",note:"Experimental simulator. Its economic relationships are game mechanics, not an econometric forecast.",mission:"Your mission: govern Island A for 12 turns. Grow real well-being, not just nominal numbers.",cabinet:"🎛️ Your economic cabinet",chart:"📈 The economy in motion",log:"🧠 Decision log",play:"⚡ EXECUTE POLICIES",reset:"↻ Restart",surprise:"🎲 Surprise policy"}};
+let lang=localStorage.getItem("las-dos-islas-lang")||"es";
+function apply(){
+ const d=T[lang]; document.documentElement.lang=lang; document.title=d.title+" — EFA Country Simulator™";
+ let b=document.getElementById("langSwitch");
+ if(!b){b=document.createElement("button");b.id="langSwitch";document.body.appendChild(b);b.onclick=()=>{lang=lang==="es"?"en":"es";localStorage.setItem("las-dos-islas-lang",lang);apply()};}
+ b.textContent=d.lang;
+ let n=document.getElementById("publicNote");
+ if(!n){n=document.createElement("div");n.id="publicNote";let w=document.querySelector(".wrap");if(w)w.appendChild(n)}
+ n.textContent=d.note;
+ const h1=document.querySelector("h1");if(h1)h1.textContent=d.title;
+ const sub=document.querySelector(".sub");if(sub)sub.textContent=lang==="es"?"EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa":"EFA Country Simulator™ — prosperity = real flow + productivity + adaptive freedom";
+ const help=document.querySelector(".help");if(help)help.innerHTML="<b>"+d.mission.split(":")[0]+":</b>"+d.mission.split(":").slice(1).join(":");
+ const h2=document.querySelectorAll("h2");if(h2[0])h2[0].textContent=d.cabinet;if(h2[1])h2[1].textContent=d.chart;if(h2[2])h2[2].textContent=d.log;
+ const r={"Impuestos":lang==="es"?"Impuestos":"Taxes","Taxes":lang==="es"?"Impuestos":"Taxes","Libertad empresarial":lang==="es"?"Libertad empresarial":"Business freedom","Business freedom":lang==="es"?"Libertad empresarial":"Business freedom","Gasto público":lang==="es"?"Gasto público":"Public spending","Public spending":lang==="es"?"Gasto público":"Public spending","Salario mínimo":lang==="es"?"Salario mínimo":"Minimum wage","Minimum wage":lang==="es"?"Salario mínimo":"Minimum wage","EJECUTAR POLÍTICAS":d.play,"EXECUTE POLICIES":d.play,"Reiniciar":d.reset,"Restart":d.reset,"Política sorpresa":d.surprise,"Surprise policy":d.surprise};
+ document.querySelectorAll("label,button,h3").forEach(el=>{if(el.id==="langSwitch")return;let t=el.textContent.trim();if(r[t])el.textContent=r[t]});
+}
+window.addEventListener("DOMContentLoaded",apply);apply();
+</script><script>
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}
+</script></body>
 </html>
