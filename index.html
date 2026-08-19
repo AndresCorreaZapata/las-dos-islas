@@ -28,6 +28,7 @@ canvas{width:100%;height:220px;background:#081320;border-radius:14px;border:1px 
 #publicNote{font-size:12px;color:#91a7c0;margin:12px 0 20px;line-height:1.45}
 </style></head>
 <body>
+<button id="langSwitch" type="button" aria-label="Cambiar idioma">EN</button>
 <div class="wrap">
   <div class="top">
     <div><h1>LAS DOS ISLAS</h1><div class="sub">EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa</div></div>
@@ -196,27 +197,22 @@ function draw(){
 }
 init();
 </script>
-<script id="public-v101-js">
+<script id="public-v102-js">
 (function(){
-const T={es:{lang:"EN",title:"LAS DOS ISLAS",note:"Simulador experimental. Sus relaciones económicas son mecánicas de juego, no una predicción econométrica.",mission:"Tu misión: gobierna la Isla A durante 12 turnos. Haz crecer el bienestar real, no solo las cifras nominales.",cabinet:"🎛️ Tu gabinete económico",chart:"📈 La economía en movimiento",log:"🧠 Registro de decisiones",play:"⚡ EJECUTAR POLÍTICAS",reset:"↻ Reiniciar",surprise:"🎲 Política sorpresa"},
-en:{lang:"ES",title:"THE TWO ISLANDS",note:"Experimental simulator. Its economic relationships are game mechanics, not an econometric forecast.",mission:"Your mission: govern Island A for 12 turns. Grow real well-being, not just nominal numbers.",cabinet:"🎛️ Your economic cabinet",chart:"📈 The economy in motion",log:"🧠 Decision log",play:"⚡ EXECUTE POLICIES",reset:"↻ Restart",surprise:"🎲 Surprise policy"}};
+const D={
+es:{b:"EN",title:"LAS DOS ISLAS",sub:"EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa",cab:"🎛️ Tu gabinete económico",chart:"📈 La economía en movimiento",log:"🧠 Registro de decisiones",play:"⚡ EJECUTAR POLÍTICAS",reset:"↻ Reiniciar",surprise:"🎲 Política sorpresa"},
+en:{b:"ES",title:"THE TWO ISLANDS",sub:"EFA Country Simulator™ — prosperity = real flow + productivity + adaptive freedom",cab:"🎛️ Your economic cabinet",chart:"📈 The economy in motion",log:"🧠 Decision log",play:"⚡ EXECUTE POLICIES",reset:"↻ Restart",surprise:"🎲 Surprise policy"}};
 let lang=localStorage.getItem("las-dos-islas-lang")||"es";
 function apply(){
- const d=T[lang]; document.documentElement.lang=lang; document.title=d.title+" — EFA Country Simulator™";
- let b=document.getElementById("langSwitch");
- if(!b){b=document.createElement("button");b.id="langSwitch";document.body.appendChild(b);b.onclick=()=>{lang=lang==="es"?"en":"es";localStorage.setItem("las-dos-islas-lang",lang);apply()};}
- b.textContent=d.lang;
- let n=document.getElementById("publicNote");
- if(!n){n=document.createElement("div");n.id="publicNote";let w=document.querySelector(".wrap");if(w)w.appendChild(n)}
- n.textContent=d.note;
- const h1=document.querySelector("h1");if(h1)h1.textContent=d.title;
- const sub=document.querySelector(".sub");if(sub)sub.textContent=lang==="es"?"EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa":"EFA Country Simulator™ — prosperity = real flow + productivity + adaptive freedom";
- const help=document.querySelector(".help");if(help)help.innerHTML="<b>"+d.mission.split(":")[0]+":</b>"+d.mission.split(":").slice(1).join(":");
- const h2=document.querySelectorAll("h2");if(h2[0])h2[0].textContent=d.cabinet;if(h2[1])h2[1].textContent=d.chart;if(h2[2])h2[2].textContent=d.log;
- const r={"Impuestos":lang==="es"?"Impuestos":"Taxes","Taxes":lang==="es"?"Impuestos":"Taxes","Libertad empresarial":lang==="es"?"Libertad empresarial":"Business freedom","Business freedom":lang==="es"?"Libertad empresarial":"Business freedom","Gasto público":lang==="es"?"Gasto público":"Public spending","Public spending":lang==="es"?"Gasto público":"Public spending","Salario mínimo":lang==="es"?"Salario mínimo":"Minimum wage","Minimum wage":lang==="es"?"Salario mínimo":"Minimum wage","EJECUTAR POLÍTICAS":d.play,"EXECUTE POLICIES":d.play,"Reiniciar":d.reset,"Restart":d.reset,"Política sorpresa":d.surprise,"Surprise policy":d.surprise};
- document.querySelectorAll("label,button,h3").forEach(el=>{if(el.id==="langSwitch")return;let t=el.textContent.trim();if(r[t])el.textContent=r[t]});
+const d=D[lang]; document.documentElement.lang=lang; document.title=d.title+" — EFA Country Simulator™";
+const b=document.getElementById("langSwitch"); if(b){b.textContent=d.b;b.onclick=()=>{lang=lang==="es"?"en":"es";localStorage.setItem("las-dos-islas-lang",lang);apply();};}
+const h1=document.querySelector("h1");if(h1)h1.textContent=d.title;
+const sub=document.querySelector(".sub");if(sub)sub.textContent=d.sub;
+const h2=document.querySelectorAll("h2");if(h2[1])h2[1].textContent=d.cab;if(h2[2])h2[2].textContent=d.chart;if(h2[3])h2[3].textContent=d.log;
+document.querySelectorAll("button").forEach(el=>{if(el.id==="langSwitch")return;const t=el.textContent.trim();if(t.includes("EJECUTAR")||t.includes("EXECUTE"))el.textContent=d.play;else if(t.includes("Reiniciar")||t.includes("Restart"))el.textContent=d.reset;else if(t.includes("sorpresa")||t.includes("Surprise"))el.textContent=d.surprise;});
 }
-window.addEventListener("DOMContentLoaded",apply);apply();
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",apply);else apply();
+})();
 </script><script>
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}
 </script></body>
