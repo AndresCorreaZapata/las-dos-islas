@@ -23,7 +23,7 @@ canvas{width:100%;height:220px;background:#081320;border-radius:14px;border:1px 
 .log{max-height:220px;overflow:auto;font-size:13px;line-height:1.45}.event{padding:9px;border-bottom:1px solid #1c3148}.event strong{color:#fff}.help{color:var(--muted);line-height:1.55}.score{font-size:44px;font-weight:950;color:var(--gold)}.end{display:none}.end.show{display:block}.tag{display:inline-block;padding:6px 9px;border-radius:8px;background:#1b3048;margin:4px 4px 0 0;color:#cfe0f2}
 @media(max-width:900px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.stats{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr}.world{height:330px}.island{height:150px;width:42%}}
 </style>
-<style id="public-v103-css">
+<style id="public-v104-css">
 #langSwitch{position:fixed;right:16px;top:16px;z-index:99999;border:1px solid rgba(255,255,255,.25);background:#0b1727;color:#fff;border-radius:999px;padding:9px 14px;font-weight:900;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 #publicNote{font-size:12px;color:#91a7c0;margin:12px 0 20px;line-height:1.45}
 </style></head>
@@ -34,6 +34,7 @@ canvas{width:100%;height:220px;background:#081320;border-radius:14px;border:1px 
     <div class="pill">Turno <span id="turn">1</span>/12 · Año <span id="year">1</span></div>
   </div>
 
+  <div id="publicNote">Simulador experimental. Sus relaciones económicas son mecánicas de juego, no una predicción econométrica.</div>
   <div class="grid">
     <section class="panel">
       <div class="world" id="world">
@@ -155,13 +156,14 @@ function nextTurn(){
  if(shock.es.includes("sanitario")) s.emp*=0.97;
  history.push(s.gdp);
  log({
- es:`${I.es.turn} ${s.turn}: <strong>${shock.es}</strong> · ${I.es.productivity} ${fmt(productivityGrowth)}% · ${I.es.inflation} +${inflation.toFixed(1)}% · ${I.es.realGDP} ${Math.round(s.gdp)}.`,
- en:`${I.en.turn} ${s.turn}: <strong>${shock.en}</strong> · ${I.en.productivity} ${fmt(productivityGrowth)}% · ${I.en.inflation} +${inflation.toFixed(1)}% · ${I.en.realGDP} ${Math.round(s.gdp)}.`
+ es:`Turno ${s.turn}: <strong>${shock.es}</strong> · Productividad ${fmt(productivityGrowth)}% · Inflación +${inflation.toFixed(1)}% · PIB real ${Math.round(s.gdp)}.`,
+ en:`Turn ${s.turn}: <strong>${shock.en}</strong> · Productivity ${fmt(productivityGrowth)}% · Inflation +${inflation.toFixed(1)}% · Real GDP ${Math.round(s.gdp)}.`
 });
  s.turn++;s.year=s.turn;
  render();
  if(s.turn===13)finish();
 }
+function langTextSafe(es,en){return (typeof window.langText==="function")?window.langText(es,en):es;}
 function fmt(x){return (x>=0?"+":"")+x.toFixed(1)}
 function log(t0){
  let d=document.createElement("div"); d.className="event";
@@ -174,7 +176,7 @@ function randomPolicy(){
  $("free").value=20+Math.floor(Math.random()*81);
  $("spend").value=10+Math.floor(Math.random()*41);
  $("wage").value=80+Math.floor(Math.random()*81);
- render();$("eventBox").textContent=t("surpriseLoaded");
+ render();$("eventBox").textContent=langTextSafe("🎲 Política sorpresa cargada. ¿Te atreves a ejecutarla?","🎲 Surprise policy loaded. Dare to execute it?");
 }
 function resetGame(){location.reload()}
 function finish(){
@@ -200,11 +202,11 @@ function draw(){
  ctx.beginPath();ctx.lineWidth=4;ctx.strokeStyle="#55d6be";
  history.forEach((v,i)=>{let x=35+i*(w-55)/11,y=h-25-(v-min)/(max-min)*(h-55);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});
  ctx.stroke();
- ctx.fillStyle="#9db0c8";ctx.font="12px Segoe UI";ctx.fillText(typeof t==="function"?t("graphLabel"):"Real GDP",38,18);ctx.fillText(Math.round(history[history.length-1]),w-60,18);
+ ctx.fillStyle="#9db0c8";ctx.font="12px Segoe UI";ctx.fillText((typeof window.t==="function"?window.t("graphLabel"):"PIB real"),38,18);ctx.fillText(Math.round(history[history.length-1]),w-60,18);
 }
-init();
+try{init();}catch(e){console.error("Las Dos Islas initialization error:",e);}
 </script>
-<script id="public-v103-js">
+<script id="public-v104-js">
 (function(){
 const I={
 es:{
@@ -327,7 +329,7 @@ function apply(){
  const pill=document.querySelector(".pill");
  if(pill)pill.innerHTML=x.turn+' <span id="turn">'+s.turn+'</span>/12 · '+x.year+' <span id="year">'+s.year+'</span>';
 
- const firstLog=document.querySelector("#log .event"); if(firstLog && s.turn===1 && firstLog.children.length===0) firstLog.textContent=x.startLog;
+ const firstLog=document.querySelector("#log .event"); if(firstLog && s.turn===1 && !firstLog.dataset.es){firstLog.textContent=x.startLog;}
  const note=document.getElementById("publicNote");
  if(note)note.textContent=x.note;
 
