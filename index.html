@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAS DOS ISLAS — EFA Country Simulator</title>
+<title>Las Dos Islas — EFA Country Simulator™ Beta 0.3</title>
 <style>
 :root{--bg:#08111f;--panel:#0e1b2d;--panel2:#13243a;--text:#eef5ff;--muted:#9db0c8;--accent:#55d6be;--gold:#ffd166;--danger:#ff6b6b;--blue:#4dabf7}
 *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0%,#17365b 0,#08111f 42%,#050a12 100%);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
@@ -26,8 +26,21 @@ canvas{width:100%;height:220px;background:#081320;border-radius:14px;border:1px 
 <style id="public-v104-css">
 #langSwitch{position:fixed;right:16px;top:16px;z-index:99999;border:1px solid rgba(255,255,255,.25);background:#0b1727;color:#fff;border-radius:999px;padding:9px 14px;font-weight:900;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 #publicNote{font-size:12px;color:#91a7c0;margin:12px 0 20px;line-height:1.45}
-</style></head>
-<body>
+</style><style id="efa-v11-css">#levelOverlay{position:fixed;inset:0;background:rgba(3,10,18,.95);z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px}.level-card{width:min(900px,96vw);background:#0b1727;border:1px solid #31506f;border-radius:24px;padding:28px}.level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.level-btn{background:#102238;border:1px solid #31506f;color:#eaf4ff;border-radius:16px;padding:15px;text-align:left;min-height:140px;cursor:pointer}.level-btn.locked{opacity:.4}.level-btn strong{display:block;font-size:17px;margin-bottom:7px}.level-btn small{color:#9db0c8;line-height:1.4}.level-target{margin-top:16px;padding:12px;background:#091522;border-radius:12px;color:#cfe0f2}.level-start{margin-top:15px;width:100%}#levelBadge{position:fixed;left:16px;top:16px;z-index:99999;background:#0b1727;border:1px solid #31506f;color:#fff;border-radius:999px;padding:8px 13px;font-weight:900}@media(max-width:900px){.level-grid{grid-template-columns:1fr 1fr}}</style>
+<style id="efa-beta03-css">
+.efa-score-wrap{display:grid;grid-template-columns:minmax(220px,280px) 1fr;gap:24px;align-items:center;margin:18px 0 10px}
+.efa-orb-zone{min-height:250px;display:flex;align-items:center;justify-content:center;position:relative}
+.efa-orb{--size:82px;--hue:215;width:var(--size);height:var(--size);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;transition:width .9s cubic-bezier(.2,.8,.2,1),height .9s cubic-bezier(.2,.8,.2,1),box-shadow .9s,filter .5s;background:radial-gradient(circle at 33% 27%,#fffbd0 0 6%,hsl(var(--hue) 95% 68%) 18%,hsl(var(--hue) 82% 48%) 68%,hsl(var(--hue) 70% 30%) 100%);box-shadow:0 0 0 5px rgba(255,255,255,.06),0 0 38px hsl(var(--hue) 95% 60% / .42),inset -14px -18px 28px rgba(0,0,0,.2),inset 12px 9px 18px rgba(255,255,255,.18)}
+.efa-orb:after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid hsl(var(--hue) 95% 68% / .55);transition:transform .8s}
+.efa-orb.master:after{animation:efa-spin 6s linear infinite}
+@keyframes efa-spin{to{transform:rotate(360deg)}}
+.efa-orb-number{font-size:clamp(27px,4vw,48px);font-weight:950;line-height:1;color:#fff;text-shadow:0 3px 14px #0008;text-align:center}.efa-orb-number small{display:block;font-size:11px;letter-spacing:1.2px;margin-top:4px;color:#eef5ff}
+.efa-score-title{font-size:12px;letter-spacing:2px;color:#9db0c8;font-weight:900}.efa-score-main{font-size:28px;font-weight:950;margin:2px 0 3px}.efa-score-main span{font-size:15px;color:#9db0c8;font-weight:800}.efa-score-verdict{font-size:18px;font-weight:900;margin-bottom:12px}.efa-score-bar{height:14px;background:#12263a;border-radius:999px;border:1px solid #28415f;overflow:hidden}.efa-score-bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#4dabf7,#55d6be,#ff9f43,#ffd166);transition:width 1s ease}.efa-score-sub{display:flex;justify-content:space-between;gap:10px;margin-top:7px;color:#9db0c8;font-size:12px}.efa-score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.efa-mini{padding:8px 9px;background:#0b1727;border:1px solid #203954;border-radius:10px;font-size:11px;color:#aebfd2}.efa-mini b{display:block;color:#fff;font-size:14px;margin-top:2px}.efa-history{margin-top:10px;font-size:12px;color:#9db0c8}.efa-history b{color:#fff}.efa-record{margin-top:14px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,#0c1c2e,#10263d);border:1px solid #31506f}.efa-record strong{color:#ffd166}.end > .score,.end > #verdict,.end > #badges{display:none}.efa-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.efa-actions button{cursor:pointer}.efa-challenge{margin-top:12px;padding:12px 14px;border-radius:14px;background:#091522;border:1px dashed #31506f}.efa-challenge b{color:#55d6be}.efa-achievements{margin-top:12px}.efa-achievements .tag{cursor:default}
+@media(max-width:700px){.efa-score-wrap{grid-template-columns:1fr}.efa-score-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<style id="efa-diagnosis-style">.efa-diagnosis{margin-top:10px;padding:11px 12px;border:1px solid #28415f;border-radius:12px;background:#0b1727;color:#d9e7f5;font-size:12px;line-height:1.45}.efa-diagnosis b{color:#ffd166}.efa-diagnosis .weak{color:#ffb4b4}.efa-diagnosis .strong{color:#9ff0dc}</style></head>
+<body><div id="levelOverlay"><div class="level-card"><h1>🌎 LAS DOS ISLAS™</h1><p class="help">EFA Country Simulator — cada nivel añade una nueva tensión económica. Construye flujo, productividad, capital, empleo y poder adquisitivo.</p><div class="level-grid"><button class="level-btn" data-level="1"><strong>1 · Fundamentos</strong><small>Aprende a equilibrar las cuatro palancas.</small></button><button class="level-btn locked" data-level="2"><strong>2 · Crecimiento</strong><small>Crece sin destruir empleo ni empresas.</small></button><button class="level-btn locked" data-level="3"><strong>3 · Poder adquisitivo</strong><small>Mejora el salario real sin fabricar inflación.</small></button><button class="level-btn locked" data-level="4"><strong>4 · Resiliencia</strong><small>Sobrevive a shocks y recupera el flujo.</small></button><button class="level-btn locked" data-level="5"><strong>5 · Maestro EFA</strong><small>Equilibra crecimiento, libertad, estabilidad y resiliencia.</small></button></div><div class="level-target" id="levelTarget">Selecciona el Nivel 1 para comenzar.</div><button id="startLevel" class="level-start" disabled>▶ COMENZAR NIVEL</button></div></div><div id="levelBadge">Beta 0.3 · Nivel 1 · Fundamentos</div>
 <div class="wrap">
   <div class="top">
     <div><h1>LAS DOS ISLAS</h1><div class="sub">EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa</div></div>
@@ -92,6 +105,22 @@ canvas{width:100%;height:220px;background:#081320;border-radius:14px;border:1px 
     </section>
 
     <section class="panel end" id="end">
+<div class="efa-score-wrap">
+  <div class="efa-orb-zone"><div class="efa-orb" id="efaOrb"><div class="efa-orb-number" id="efaOrbNumber">0<small>/ 1.000</small></div></div></div>
+  <div>
+    <div class="efa-score-title">EFA SCORE™</div>
+    <div class="efa-score-main"><span id="efaScoreBig">0</span> <span>/ 1.000</span></div>
+    <div class="efa-score-verdict" id="efaScoreVerdict">Resultado estratégico</div>
+    <div class="efa-score-bar"><i id="efaScoreFill"></i></div>
+    <div class="efa-score-sub"><span>Tu desempeño</span><span>Máximo estratégico de diseño: 1.000</span></div>
+    <div class="efa-score-grid" id="efaScoreGrid"></div>
+    <div class="efa-record" id="efaRecord"></div><div class="efa-history" id="efaHistory"></div>
+    <div class="efa-challenge" id="efaChallenge"></div><div class="efa-diagnosis" id="efaDiagnosis"></div>
+    <div class="efa-actions"><button class="btn" id="efaReplay">🔁 Jugar de nuevo</button><button class="btn" id="efaNext" style="display:none">🚀 Siguiente nivel</button></div>
+    <div class="efa-achievements" id="efaAchievements"></div>
+  </div>
+</div>
+
       <h2>🏁 Fin de la partida</h2>
       <div class="score" id="score">0</div>
       <p id="verdict"></p>
@@ -103,13 +132,13 @@ canvas{width:100%;height:220px;background:#081320;border-radius:14px;border:1px 
 
 <script>
 const $=id=>document.getElementById(id);
-let s, history=[];
+let s, history=[]; let currentLevel=1; let levelShocks=0; const LEVELS={1:{es:"Fundamentos",en:"Fundamentals",targetEs:"Bienestar EFA ≥ 105",targetEn:"EFA Well-being ≥ 105",unlock:105},2:{es:"Crecimiento",en:"Growth",targetEs:"PIB real ≥ 125 y Empresas ≥ 105",targetEn:"Real GDP ≥ 125 and Firms ≥ 105",unlock:460},3:{es:"Poder adquisitivo",en:"Purchasing Power",targetEs:"Salario real ≥ 108 e Inflación ≤ 15%",targetEn:"Real wage ≥ 108 and Inflation ≤ 15%",unlock:500},4:{es:"Resiliencia",en:"Resilience",targetEs:"3 shocks superados; Empleo ≥ 100; PIB ≥ 120",targetEn:"3 shocks survived; Employment ≥ 100; GDP ≥ 120",unlock:540},5:{es:"Maestro EFA",en:"EFA Master",targetEs:"Equilibrio integral EFA",targetEn:"Full EFA balance",unlock:600}};
 function init(){
  s={turn:1,year:1,gdp:100,prod:100,realw:100,emp:100,inf:0,debt:35,firms:100,well:100,fish:100};
  history=[100]; render(); log({es:I.es.startLog,en:I.en.startLog});
 }
 function val(id){return +$(id).value}
-function render(){
+function render(){ const lb=$("levelBadge"); if(lb)lb.textContent="Nivel "+currentLevel+" · "+LEVELS[currentLevel].es;
  $("turn").textContent=s.turn;$("year").textContent=s.year;$("fishA").textContent=Math.round(s.fish)+" 🐟";$("fishB").textContent="2.000 🐟";
  $("taxV").textContent=val("tax")+"%";$("freeV").textContent=val("free");$("spendV").textContent=val("spend")+"%";$("wageV").textContent=val("wage");
  $("gdp").textContent=Math.round(s.gdp);$("prod").textContent=Math.round(s.prod);$("realw").textContent=Math.round(s.realw);
@@ -131,11 +160,11 @@ function nextTurn(){
  const tax=val("tax"),free=val("free"),spend=val("spend"),wage=val("wage");
  let shock=events[Math.floor(Math.random()*events.length)];
  // Game model: transparent stylized relationships, not an econometric forecast.
- let taxEffect=(30-tax)*0.055;
- let freeEffect=(free-60)*0.018;
+ let taxEffect=(30-tax)*0.055*(1+0.05*(currentLevel-1));
+ let freeEffect=(free-60)*0.018*(1+0.07*(currentLevel-1));
  let publicEffect=(spend-25)*0.010;
  let wageGap=(wage-100)-(s.prod-100)*0.45;
- let wagePenalty=Math.max(0,wageGap)*0.022;
+ let wagePenalty=Math.max(0,wageGap)*0.022*(1+0.12*(currentLevel-1));
  let underWage=Math.max(0,80-wage)*0.002;
  let productivityGrowth=1.5+taxEffect+freeEffect+publicEffect-wagePenalty+underWage+shock.effect*0.35;
  productivityGrowth=Math.max(-3.5,Math.min(5.5,productivityGrowth));
@@ -179,21 +208,78 @@ function randomPolicy(){
  render();$("eventBox").textContent=langTextSafe("🎲 Política sorpresa cargada. ¿Te atreves a ejecutarla?","🎲 Surprise policy loaded. Dare to execute it?");
 }
 function resetGame(){location.reload()}
+function efaMetric(v,low,target){return Math.max(0,Math.min(100,(v-low)/(target-low)*100))}
+function efaScoreCalc(){
+ // EFA Score: independent evaluation layer. Explicit numeric coercion prevents
+ // a browser/runtime type issue from collapsing the result to zero.
+ const n=(v,d=0)=>{const x=Number(v);return Number.isFinite(x)?x:d};
+ const metric=(v,low,target)=>Math.max(0,Math.min(100,(n(v)-low)/(target-low)*100));
+ const c={
+  flujo:metric(s.well,70,140),
+  productividad:metric(s.prod,70,140),
+  pib:metric(s.gdp,70,140),
+  empleo:metric(s.emp,70,115),
+  empresas:metric(s.firms,70,115),
+  salario:metric(s.realw,70,115),
+  inflacion:Math.max(0,Math.min(100,(25-n(s.inf))/(25-5)*100)),
+  deuda:Math.max(0,Math.min(100,(70-n(s.debt))/(70-20)*100))
+ };
+ const raw=(c.flujo*.25+c.productividad*.18+c.pib*.15+c.empleo*.10+c.empresas*.10+c.salario*.10+c.inflacion*.06+c.deuda*.06)*10;
+ const score=Math.round(Number.isFinite(raw)?raw:0);
+ return {score:Math.max(0,Math.min(1000,score)),c};
+}
+function efaVerdict(score){
+ if(score>=950)return ["🌻 Maestro EFA","Dominaste el sistema: liberaste flujo sin sacrificar estabilidad."];
+ if(score>=800)return ["🟡 Arquitecto del Flujo","Excelente equilibrio entre productividad, crecimiento y poder adquisitivo."];
+ if(score>=600)return ["🟠 Gobernante Adaptativo","Buen desempeño. Aún hay flujo que puedes liberar."];
+ if(score>=400)return ["🟢 Optimizador de Corto Plazo","Hay avances, pero algunas decisiones están creando desequilibrios."];
+ if(score>=200)return ["🔷 Economía Frágil","El sistema crece con restricciones importantes."];
+ return ["🔵 Flujo en Riesgo","Tus decisiones están deteriorando el flujo económico."];
+}
+function efaRenderFinal(){
+ const r=efaScoreCalc(), pct=r.score/1000, orb=$("efaOrb");
+ const hue=Math.round(215-170*pct), size=Math.round(72+148*pct);
+ orb.style.setProperty("--size",size+"px");orb.style.setProperty("--hue",hue);
+ orb.classList.toggle("master",r.score>=950);
+ $("efaOrbNumber").innerHTML=r.score.toLocaleString("es-CO")+'<small>/ 1.000</small>';
+ $("efaScoreBig").textContent=r.score.toLocaleString("es-CO");
+ const v=efaVerdict(r.score);$("efaScoreVerdict").textContent=v[0];$("efaScoreVerdict").title=v[1];$("efaScoreFill").style.width=(pct*100)+"%";
+ const labels=[
+  ["Flujo",Number(s.well),Math.round(r.c.flujo)],
+  ["Productividad",Number(s.prod),Math.round(r.c.productividad)],
+  ["PIB real",Number(s.gdp),Math.round(r.c.pib)],
+  ["Empleo",Number(s.emp),Math.round(r.c.empleo)],
+  ["Empresas",Number(s.firms),Math.round(r.c.empresas)],
+  ["Salario real",Number(s.realw),Math.round(r.c.salario)],
+  ["Inflación",Number(s.inf),Math.round(r.c.inflacion)],
+  ["Deuda / PIB",Number(s.debt),Math.round(r.c.deuda)]
+ ];
+ $("efaScoreGrid").innerHTML=labels.map(x=>{
+  const display=(x[0]==="Inflación"||x[0]==="Deuda / PIB")?x[1].toFixed(1)+"%":Math.round(x[1]);
+  return `<div class="efa-mini">${x[0]}<b>${display}</b></div>`;
+ }).join("");
+ const key="las-dos-islas-efa-record",old=Number(localStorage.getItem(key)||0),best=Math.max(old,r.score);localStorage.setItem(key,String(best));
+ const hk="las-dos-islas-efa-history";let hs=[];try{hs=JSON.parse(localStorage.getItem(hk)||"[]")}catch(e){} hs.unshift({score:r.score,level:currentLevel,ts:new Date().toLocaleDateString("es-CO")});hs=hs.slice(0,8);localStorage.setItem(hk,JSON.stringify(hs));
+ $("efaRecord").innerHTML=`🏆 Récord personal: <strong>${best.toLocaleString("es-CO")} / 1.000</strong>${r.score>=old?" · ¡Nueva marca!":" · Te faltan "+(best-r.score)+" puntos para superarlo."}`;
+ $("efaHistory").innerHTML=`Últimas partidas: <b>${hs.map((h,i)=>`#${i+1} · N${h.level} · ${h.score}`).join(" &nbsp;|&nbsp; ")}</b>`;
+ const challenge= r.score>=800 ? "Desafío desbloqueado: consigue 950+ y conviértete en Maestro EFA." : r.score>=600 ? "Desafío: alcanza 800 puntos sin superar 15% de inflación." : "Desafío: supera 600 puntos manteniendo empleo ≥ 100.";
+ $("efaChallenge").innerHTML="🎯 <b>PRÓXIMO DESAFÍO</b> · "+challenge;
+ let badges=[];if(r.score>=600)badges.push("🏆 600+ EFA");if(r.score>=800)badges.push("🟠 800+ Arquitecto");if(r.score>=950)badges.push("🌻 Maestro EFA");if(s.inf<=12)badges.push(t("badgePurchasingPower"));if(s.debt<35)badges.push(t("badgeFiscal"));if(s.prod>125)badges.push(t("badgeProductivity"));
+ $("efaAchievements").innerHTML=badges.map(x=>`<span class="tag">${x}</span>`).join("");
+ $("efaNext").style.display=(passed && currentLevel<5)?"inline-block":"none";
+ return r.score;
+}
 function finish(){
  $("end").classList.add("show");
- let score=Math.round(s.well*2 + s.prod + s.emp + s.firms*0.4 - s.inf*2 - s.debt*0.5);
- $("score").textContent=score+" "+t("points");
- let v=score>520?t("verdict1"):score>430?t("verdict2"):t("verdict3");
- $("verdict").textContent=v;
- let badges=[];
- if(s.prod>125)badges.push(t("badgeProductivity"));
- if(s.firms>110)badges.push(t("badgeEntrepreneur"));
- if(s.inf<12)badges.push(t("badgePurchasingPower"));
- if(s.debt<35)badges.push(t("badgeFiscal"));
- if(s.realw>110)badges.push(t("badgeRealWage"));
- if(s.well>120)badges.push(t("badgeEFA"));
- $("badges").innerHTML=badges.map(x=>`<span class="tag">${x}</span>`).join("");
+ let legacyScore=Math.round(s.well*2+s.prod+s.emp+s.firms*.4-s.inf*2-s.debt*.5);
+ let passed=(currentLevel===1&&s.well>=105)||(currentLevel===2&&s.gdp>=125&&s.firms>=105)||(currentLevel===3&&s.realw>=108&&s.inf<=15)||(currentLevel===4&&levelShocks>=3&&s.emp>=100&&s.gdp>=120)||(currentLevel===5&&legacyScore>=600&&s.prod>=120&&s.realw>=105&&s.emp>=100&&s.inf<=18&&s.debt<=55);
+ if(passed)localStorage.setItem("las-dos-islas-unlock",String(Math.max(currentLevel,Number(localStorage.getItem("las-dos-islas-unlock")||1))));
+ $("score").textContent=legacyScore+" "+t("points");
+ $("verdict").textContent=passed?(lang==="es"?"🏆 Nivel superado. Has demostrado dominio del flujo económico.":"🏆 Level cleared. You demonstrated command of economic flow."):(lang==="es"?"⚠️ Nivel no superado. Revisa el flujo global y vuelve a intentarlo.":"⚠️ Level not cleared. Review the global flow and try again.");
+ let badges=[];if(s.prod>125)badges.push(t("badgeProductivity"));if(s.firms>110)badges.push(t("badgeEntrepreneur"));if(s.inf<12)badges.push(t("badgePurchasingPower"));if(s.debt<35)badges.push(t("badgeFiscal"));if(s.realw>110)badges.push(t("badgeRealWage"));if(s.well>120)badges.push(t("badgeEFA"));$("badges").innerHTML=badges.map(x=>`<span class="tag">${x}</span>`).join("");
+ efaRenderFinal();
 }
+
 function draw(){
  const c=$("chart"),ctx=c.getContext("2d"),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);
  ctx.strokeStyle="#203954";ctx.lineWidth=1;
@@ -210,7 +296,7 @@ try{init();}catch(e){console.error("Las Dos Islas initialization error:",e);}
 (function(){
 const I={
 es:{
- lang:"EN", title:"LAS DOS ISLAS", sub:"EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa",
+ lang:"ES", title:"LAS DOS ISLAS", sub:"EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa",
  mission:"Tu misión: gobierna la Isla A durante 12 turnos. Haz crecer el bienestar real, no solo las cifras nominales.",
  mission2:"Cada decisión mueve simultáneamente productividad, inversión, precios, empleo, recaudo y deuda.",
  mission3:"La Isla B es el benchmark: no puedes copiarla; debes superarla estratégicamente.",
@@ -233,10 +319,11 @@ es:{
  verdict2:"🥈 Buen gobierno: crecimiento con algunas tensiones.",
  verdict3:"⚠️ Trampa de corto plazo: algunas mejoras nominales terminaron deteriorando el flujo real.",
  badgeProductivity:"🚀 Motor de Productividad",badgeEntrepreneur:"🏭 Emprendedor",badgePurchasingPower:"🛡️ Defensor del Poder Adquisitivo",badgeFiscal:"💰 Disciplina Fiscal",badgeRealWage:"👷 Salario Real Sostenible",badgeEFA:"🌊 Maestro EFA",
- graphLabel:"PIB real"
+ graphLabel:"PIB real",
+ score:{flow:"Flujo",productivity:"Productividad",gdp:"PIB real",employment:"Empleo",firms:"Empresas",wage:"Salario real",inflation:"Inflación",debt:"Deuda / PIB",performance:"Tu desempeño",max:"Máximo estratégico de diseño: 1.000",record:"Récord personal",newRecord:"¡Nueva marca!",toBeat:"Te faltan",history:"Últimas partidas",challengeTitle:"PRÓXIMO DESAFÍO",challenge1:"Desafío: supera 600 puntos manteniendo empleo ≥ 100.",challenge2:"Desafío: alcanza 800 puntos sin superar 15% de inflación.",challenge3:"Desafío desbloqueado: consigue 950+ y conviértete en Maestro EFA.",diagnosis:"Diagnóstico EFA",strength:"tu mayor fortaleza es",opportunity:"La principal oportunidad de mejora está en",diagnosisEnd:"El objetivo no es maximizar una sola variable, sino liberar flujo manteniendo el sistema equilibrado."}
 },
 en:{
- lang:"ES", title:"THE TWO ISLANDS", sub:"EFA Country Simulator™ — prosperity = real flow + productivity + adaptive freedom",
+ lang:"EN", title:"THE TWO ISLANDS", sub:"EFA Country Simulator™ — prosperity = real flow + productivity + adaptive freedom",
  mission:"Your mission: govern Island A for 12 turns. Grow real well-being, not just nominal numbers.",
  mission2:"Each decision simultaneously moves productivity, investment, prices, employment, revenue, and debt.",
  mission3:"Island B is the benchmark: you cannot copy it; you must outperform it strategically.",
@@ -259,7 +346,8 @@ en:{
  verdict2:"🥈 Good government: growth with some tensions.",
  verdict3:"⚠️ Short-term trap: some nominal improvements ended up damaging real flow.",
  badgeProductivity:"🚀 Productivity Engine",badgeEntrepreneur:"🏭 Entrepreneur",badgePurchasingPower:"🛡️ Purchasing Power Defender",badgeFiscal:"💰 Fiscal Discipline",badgeRealWage:"👷 Sustainable Real Wage",badgeEFA:"🌊 EFA Master",
- graphLabel:"Real GDP"
+ graphLabel:"Real GDP",
+ score:{flow:"Flow",productivity:"Productivity",gdp:"Real GDP",employment:"Employment",firms:"Firms",wage:"Real wage",inflation:"Inflation",debt:"Debt / GDP",performance:"Your performance",max:"Design strategic maximum: 1,000",record:"Personal best",newRecord:"New high!",toBeat:"You need",history:"Recent games",challengeTitle:"NEXT CHALLENGE",challenge1:"Challenge: exceed 600 points while keeping employment ≥ 100.",challenge2:"Challenge: reach 800 points without exceeding 15% inflation.",challenge3:"Challenge unlocked: reach 950+ and become an EFA Master.",diagnosis:"EFA Diagnosis",strength:"your greatest strength is",opportunity:"The main opportunity for improvement is",diagnosisEnd:"The goal is not to maximize a single variable, but to release flow while keeping the system balanced."}
 }
 };
 let lang=localStorage.getItem("las-dos-islas-lang")||"es";
@@ -267,7 +355,7 @@ function d(){return I[lang]}
 function t(k){return d()[k] ?? k}
 function langText(es,en){return lang==="es"?es:en}
 window.langText=langText;
-window.t=t;
+window.t=t; window.d=d;
 
 function setText(sel,key){
  const el=document.querySelector(sel); if(el) el.textContent=key;
@@ -282,7 +370,7 @@ function apply(){
    b=document.createElement("button");
    b.id="langSwitch";
    document.body.appendChild(b);
-   b.onclick=()=>{lang=lang==="es"?"en":"es";localStorage.setItem("las-dos-islas-lang",lang);apply();};
+   b.onclick=()=>{lang=lang==="es"?"en":"es";localStorage.setItem("las-dos-islas-lang",lang);apply();window.dispatchEvent(new Event("efa-language-applied"));};
  }
  b.textContent=x.lang;
 
@@ -338,12 +426,31 @@ function apply(){
  if(islandH[0])islandH[0].textContent=lang==="es"?"ISLA A":"ISLAND A";
  if(islandH[1])islandH[1].textContent=lang==="es"?"ISLA B":"ISLAND B";
  const canvasLabel=document.querySelector("#chart");
- canvasLabel.setAttribute("aria-label",x.graphLabel);
+ if(canvasLabel)canvasLabel.setAttribute("aria-label",x.graphLabel);
+
+ // Translate the level selector and score controls too.
+ const levelButtons=document.querySelectorAll(".level-btn");
+ levelButtons.forEach(btn=>{
+   const n=Number(btn.dataset.level||1), lvl=LEVELS[n];
+   const strong=btn.querySelector("strong"), small=btn.querySelector("small");
+   if(strong&&lvl)strong.textContent=n+" · "+(lang==="en"?lvl.en:lvl.es);
+   const desc={1:{es:"Aprende a equilibrar las cuatro palancas.",en:"Learn to balance the four levers."},2:{es:"Crece sin destruir empleo ni empresas.",en:"Grow without destroying jobs or firms."},3:{es:"Mejora el salario real sin fabricar inflación.",en:"Improve real wages without creating inflation."},4:{es:"Sobrevive a shocks y recupera el flujo.",en:"Survive shocks and restore flow."},5:{es:"Equilibra crecimiento, libertad, estabilidad y resiliencia.",en:"Balance growth, freedom, stability, and resilience."}};
+   if(small&&desc[n])small.textContent=lang==="en"?desc[n].en:desc[n].es;
+ });
+ const overlayHelp=document.querySelector("#levelOverlay .level-card > .help");
+ if(overlayHelp)overlayHelp.textContent=lang==="en"?"EFA Country Simulator — each level adds a new economic tension. Build flow, productivity, capital, employment, and purchasing power.":"EFA Country Simulator — cada nivel añade una nueva tensión económica. Construye flujo, productividad, capital, empleo y poder adquisitivo.";
+ const levelTarget=document.getElementById("levelTarget");
+ if(levelTarget){const lvl=LEVELS[currentLevel]||LEVELS[1];levelTarget.textContent=lang==="en"?lvl.targetEn:lvl.targetEs;}
+ const startBtn=document.getElementById("startLevel"); if(startBtn)startBtn.textContent=lang==="en"?"▶ START LEVEL":"▶ COMENZAR NIVEL";
+ const lb=document.getElementById("levelBadge"); if(lb){const lvl=LEVELS[currentLevel]||LEVELS[1];lb.textContent=(lang==="en"?"Level ":"Nivel ")+currentLevel+" · "+(lang==="en"?lvl.en:lvl.es);}
+ const scoreSub=document.querySelector(".efa-score-sub"); if(scoreSub){const ss=scoreSub.querySelectorAll("span");if(ss[0])ss[0].textContent=x.score.performance;if(ss[1])ss[1].textContent=x.score.max;}
+ const replay=document.getElementById("efaReplay");if(replay)replay.textContent=lang==="en"?"🔁 Play again":"🔁 Jugar de nuevo";
+ const next=document.getElementById("efaNext");if(next)next.textContent=lang==="en"?"🚀 Next level":"🚀 Siguiente nivel";
 
  // Keep current game state visible after language changes.
  if(typeof render==="function") render();
  translateLog();
- if(document.getElementById("end")?.classList.contains("show") && typeof finish==="function") finish();
+ if(document.getElementById("end")?.classList.contains("show") && typeof window.efaScoreRenderSafe==="function") window.efaScoreRenderSafe();
 }
 function translateLog(){
  const entries=document.querySelectorAll("#log .event");
@@ -357,5 +464,519 @@ apply();
 })();
 </script><script>
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}
-</script></body>
+</script><script id="efa-v11-js">(function(){let selected=1;const unlocked=()=>Number(localStorage.getItem("las-dos-islas-unlock")||1);function refresh(){document.querySelectorAll(".level-btn").forEach(b=>{let n=+b.dataset.level;b.classList.toggle("locked",n>unlocked());b.disabled=n>unlocked();});let l=LEVELS[selected];document.getElementById("levelTarget").textContent=(lang==="en"?l.targetEn:l.targetEs);document.getElementById("startLevel").disabled=false;}document.querySelectorAll(".level-btn").forEach(b=>b.onclick=()=>{selected=+b.dataset.level;currentLevel=selected;refresh();});document.getElementById("startLevel").onclick=()=>{currentLevel=selected;document.getElementById("levelOverlay").style.display="none";init();};window.addEventListener("DOMContentLoaded",refresh);refresh();})();</script>
+<script id="efa-beta03-js">
+(function(){
+ function setup(){
+  const replay=$("efaReplay"),next=$("efaNext");
+  if(replay)replay.onclick=()=>{location.reload()};
+  if(next)next.onclick=()=>{const n=Math.min(5,currentLevel+1);currentLevel=n;const b=document.querySelector(`.level-btn[data-level="${n}"]`);if(b&&!b.disabled)b.click();document.getElementById("levelOverlay").style.display="none";init();};
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",setup);else setup();
+})();
+</script>
+
+<script id="efa-beta031-start-fix">
+(function(){
+  function wireStart(){
+    const overlay=document.getElementById('levelOverlay');
+    const start=document.getElementById('startLevel');
+    const buttons=document.querySelectorAll('.level-btn');
+    if(!overlay || !start) return;
+
+    let selected=(typeof currentLevel==='number' ? currentLevel : 1);
+
+    buttons.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        if(btn.disabled) return;
+        selected=Number(btn.dataset.level||1);
+        currentLevel=selected;
+        const level=(typeof LEVELS!=='undefined') ? LEVELS[selected] : null;
+        const target=document.getElementById('levelTarget');
+        const langNow=(typeof lang!=='undefined') ? lang : 'es';
+        if(target && level) target.textContent=langNow==='en'?level.targetEn:level.targetEs;
+        start.disabled=false;
+      });
+    });
+
+    start.disabled=false;
+    start.onclick=function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      try{
+        currentLevel=selected||1;
+        overlay.style.display='none';
+        if(typeof init==='function') init();
+        window.scrollTo({top:0,behavior:'smooth'});
+      }catch(err){
+        overlay.style.display='none';
+        console.error('EFA Beta 0.3.1 start error:',err);
+        if(typeof init==='function') init();
+      }
+      return false;
+    };
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',wireStart);
+  else wireStart();
+})();
+</script>
+
+<script id="efa-beta032-score-fix">
+(function(){
+  function finalScoreSafe(){
+    try{
+      if(typeof efaScoreCalc!=='function') return;
+      const r=efaScoreCalc();
+      const score=Math.max(0,Math.min(1000,Number(r.score)||0));
+      const pct=score/1000;
+      const orb=document.getElementById('efaOrb');
+      const n=document.getElementById('efaOrbNumber');
+      const big=document.getElementById('efaScoreBig');
+      const verdict=document.getElementById('efaScoreVerdict');
+      const fill=document.getElementById('efaScoreFill');
+      if(orb){
+        orb.style.setProperty('--size',Math.round(72+148*pct)+'px');
+        orb.style.setProperty('--hue',Math.round(215-170*pct));
+        orb.classList.toggle('master',score>=950);
+      }
+      if(n)n.innerHTML=score.toLocaleString('es-CO')+'<small>/ 1.000</small>';
+      if(big)big.textContent=score.toLocaleString('es-CO');
+      if(verdict){
+        const v=typeof efaVerdict==='function'?efaVerdict(score):['Strategic result',''];
+        const vm={"🌻 Maestro EFA":"🌻 EFA Master","🟡 Arquitecto del Flujo":"🟡 Flow Architect","🟠 Gobernante Adaptativo":"🟠 Adaptive Governor","🟢 Optimizador de Corto Plazo":"🟢 Short-Term Optimizer","🔷 Economía Frágil":"🔷 Fragile Economy","🔵 Flujo en Riesgo":"🔵 Flow at Risk"};
+        const tm={"Dominaste el sistema: liberaste flujo sin sacrificar estabilidad.":"You mastered the system: you released flow without sacrificing stability.","Excelente equilibrio entre productividad, crecimiento y poder adquisitivo.":"Excellent balance among productivity, growth, and purchasing power.","Buen desempeño. Aún hay flujo que puedes liberar.":"Good performance. There is still flow you can release.","Hay avances, pero algunas decisiones están creando desequilibrios.":"Progress is visible, but some decisions are creating imbalances.","El sistema crece con restricciones importantes.":"The system is growing under significant constraints.","Tus decisiones están deteriorando el flujo económico.":"Your decisions are damaging economic flow."};
+        const vv=lang==="en"?(vm[v[0]]||v[0]):v[0]; const vt=lang==="en"?(tm[v[1]]||v[1]):v[1]; verdict.textContent=vv; verdict.title=vt||'';
+      }
+      if(fill)fill.style.width=(pct*100)+'%';
+      // IMPORTANT: r.c contains normalized 0-100 scoring components.
+      // The player-facing cards must show the ACTUAL end-of-game metrics from s,
+      // not the normalized score components. This keeps the EFA Score transparent.
+      const safeN=(v,d=0)=>{
+        const x=Number(v);
+        return Number.isFinite(x)?x:d;
+      };
+      const scoreLabels=(typeof window.d==='function'&&window.d().score)?window.d().score:{flow:'Flow',productivity:'Productivity',gdp:'Real GDP',employment:'Employment',firms:'Firms',wage:'Real wage',inflation:'Inflation',debt:'Debt / GDP',performance:'Your performance',max:'Design strategic maximum: 1,000',record:'Personal best',newRecord:'New high!',toBeat:'You need',history:'Recent games',challengeTitle:'NEXT CHALLENGE',challenge1:'Challenge: exceed 600 points while keeping employment ≥ 100.',challenge2:'Challenge: reach 800 points without exceeding 15% inflation.',challenge3:'Challenge unlocked: reach 950+ and become an EFA Master.',diagnosis:'EFA Diagnosis',strength:'your greatest strength is',opportunity:'The main opportunity for improvement is',diagnosisEnd:'The goal is not to maximize a single variable, but to release flow while keeping the system balanced.'};
+      const labels=[
+        [scoreLabels.flow,safeN(s.well),Math.round(r.c.flujo)],
+        [scoreLabels.productivity,safeN(s.prod),Math.round(r.c.productividad)],
+        [scoreLabels.gdp,safeN(s.gdp),Math.round(r.c.pib)],
+        [scoreLabels.employment,safeN(s.emp),Math.round(r.c.empleo)],
+        [scoreLabels.firms,safeN(s.firms),Math.round(r.c.empresas)],
+        [scoreLabels.wage,safeN(s.realw),Math.round(r.c.salario)],
+        [scoreLabels.inflation,safeN(s.inf),Math.round(r.c.inflacion)],
+        [scoreLabels.debt,safeN(s.debt),Math.round(r.c.deuda)]
+      ];
+      const grid=document.getElementById('efaScoreGrid');
+      if(grid)grid.innerHTML=labels.map(x=>{
+        const isPct=(x[0]===scoreLabels.inflation||x[0]===scoreLabels.debt);
+        const display=isPct ? Number(x[1]).toFixed(1)+'%' : Math.round(Number(x[1])||0);
+        return '<div class="efa-mini">'+x[0]+'<b>'+display+'</b></div>';
+      }).join('');
+
+      const locale=lang==='en'?'en-US':'es-CO';
+      const sep=lang==='en'?'1,000':'1.000';
+      const key='las-dos-islas-efa-record';
+      let old=0; try{old=Number(localStorage.getItem(key)||0)}catch(e){}
+      const best=Math.max(old,score); try{localStorage.setItem(key,String(best))}catch(e){}
+      const rec=document.getElementById('efaRecord');
+      if(rec){
+        const comparison=score>=old
+          ? ' · '+scoreLabels.newRecord
+          : ' · '+scoreLabels.toBeat+' '+(best-score)+' '+(lang==='en'?'points to beat it.':'puntos para superarlo.');
+        rec.innerHTML='🏆 '+scoreLabels.record+': <strong>'+best.toLocaleString(locale)+' / '+sep+'</strong>'+comparison;
+      }
+
+      const hist=document.getElementById('efaHistory');
+      let hs=[];try{hs=JSON.parse(localStorage.getItem('las-dos-islas-efa-history')||'[]')}catch(e){}
+      if(hist)hist.innerHTML=scoreLabels.history+': <b>'+hs.map((h,i)=>`#${i+1} · ${lang==='en'?'L':'N'}${h.level} · ${h.score}`).join(' &nbsp;|&nbsp; ')+'</b>';
+
+      const challenge=document.getElementById('efaChallenge');
+      const challengeText=score>=800?scoreLabels.challenge3:(score>=600?scoreLabels.challenge2:scoreLabels.challenge1);
+      if(challenge)challenge.innerHTML='🎯 <b>'+scoreLabels.challengeTitle+'</b> · '+challengeText;
+
+      // Diagnose by normalized EFA component, but report the real end-of-game metric.
+      const diagnoseLabels=labels.slice(0,8);
+      let strong=diagnoseLabels.slice().sort((a,b)=>b[2]-a[2])[0];
+      let weak=diagnoseLabels.slice().sort((a,b)=>a[2]-b[2])[0];
+      const fmtMetric=(item)=>{
+        const isPct=(item[0]===scoreLabels.inflation||item[0]===scoreLabels.debt);
+        return isPct ? Number(item[1]).toFixed(1)+'%' : String(Math.round(Number(item[1])||0));
+      };
+      const diag=document.getElementById('efaDiagnosis');
+      if(diag)diag.innerHTML='🧭 <b>'+scoreLabels.diagnosis+':</b> '+scoreLabels.strength+' <span class="strong">'+strong[0]+' ('+fmtMetric(strong)+')</span>. '+scoreLabels.opportunity+' <span class="weak">'+weak[0]+' ('+fmtMetric(weak)+')</span>. '+scoreLabels.diagnosisEnd;
+
+      // Translate the final screen that was hard-coded in the HTML.
+      const endH=document.querySelector('#end h2');
+      if(endH)endH.textContent=lang==='en'?'🏁 Game over':'🏁 Fin de la partida';
+      const endHelp=document.querySelector('#end .help');
+      if(endHelp)endHelp.innerHTML='<b>'+ (lang==='en'?'EFA reading:':'Lectura EFA:') +'</b> '+(lang==='en'
+        ?'you did not win by maximizing a single variable. You won by making productive flow, capital, employment, and purchasing power reinforce one another.'
+        :'no ganaste por maximizar una sola variable. Ganaste si conseguiste que el flujo productivo, el capital, el empleo y el poder adquisitivo se reforzaran entre sí.');
+      const logHeading=document.querySelectorAll('.panel h2');
+      if(logHeading.length>=4)logHeading[3].textContent=lang==='en'?'🧠 Decision log':'🧠 Registro de decisiones';
+
+      const achievements=document.getElementById('efaAchievements');
+      if(achievements){
+        const badgeKeys=[];
+        if(score>=600)badgeKeys.push('🏆 600+ EFA');
+        if(score>=800)badgeKeys.push('🟠 800+ Flow Architect');
+        if(score>=950)badgeKeys.push('🌻 EFA Master');
+        if(s.inf<=12)badgeKeys.push(t('badgePurchasingPower'));
+        if(s.debt<35)badgeKeys.push(t('badgeFiscal'));
+        if(s.prod>125)badgeKeys.push(t('badgeProductivity'));
+        achievements.innerHTML=badgeKeys.map(x=>`<span class="tag">${x}</span>`).join('');
+      }
+
+      return score;
+    }catch(err){ console.error('EFA Score 0.3.2:',err); return null; }
+  }
+  window.efaScoreRenderSafe=finalScoreSafe;
+  function hook(){
+    if(typeof window.finish!=='function') return;
+    const original=window.finish;
+    if(original.__efa032) return;
+    function wrapped(){
+      try{original.apply(this,arguments)}catch(err){console.error('EFA finish recovered:',err)}
+      setTimeout(finalScoreSafe,30);
+    }
+    wrapped.__efa032=true;
+    window.finish=wrapped;
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(hook,0));else setTimeout(hook,0);
+})();
+</script>
+<script>
+      window.EFA_BETA_BUILD="0.3.7-CLEAN-BILINGUAL-FIXED";
+    </script>
+
+<script id="efa-beta036-final-i18n-guard">
+(function(){
+  function refreshFinalUI(){
+    try{
+      const isEn=(typeof lang!=='undefined' && lang==='en');
+      const h2=document.querySelectorAll('.panel h2');
+      if(h2.length>=4)h2[3].textContent=isEn?'🧠 Decision log':'🧠 Registro de decisiones';
+      const endH=document.querySelector('#end h2');
+      if(endH)endH.textContent=isEn?'🏁 Game over':'🏁 Fin de la partida';
+      const endHelp=document.querySelector('#end .help');
+      if(endHelp)endHelp.innerHTML='<b>'+(isEn?'EFA reading:':'Lectura EFA:')+'</b> '+(isEn
+        ?'you did not win by maximizing a single variable. You won by making productive flow, capital, employment, and purchasing power reinforce one another.'
+        :'no ganaste por maximizar una sola variable. Ganaste si conseguiste que el flujo productivo, el capital, el empleo y el poder adquisitivo se reforzaran entre sí.');
+      const scoreSub=document.querySelector('.efa-score-sub');
+      if(scoreSub){
+        const ss=scoreSub.querySelectorAll('span');
+        if(ss[0])ss[0].textContent=isEn?'Your performance':'Tu desempeño';
+        if(ss[1])ss[1].textContent=isEn?'Design strategic maximum: 1,000':'Máximo estratégico de diseño: 1.000';
+      }
+      if(document.getElementById('end')?.classList.contains('show') && typeof window.efaScoreRenderSafe==='function'){
+        window.efaScoreRenderSafe();
+      }
+    }catch(e){console.error('EFA 0.3.6 i18n guard:',e)}
+  }
+  window.addEventListener('efa-language-applied',refreshFinalUI);
+  window.addEventListener('load',refreshFinalUI);
+  setTimeout(refreshFinalUI,100);
+})();
+</script>
+
+
+<script id="efa-beta037-authoritative-final-renderer">
+(function(){
+  function tx(es,en){ return (typeof lang!=='undefined' && lang==='en') ? en : es; }
+  function num(v,d){ const x=Number(v); return Number.isFinite(x)?x:(d||0); }
+  function renderFinal037(){
+    try{
+      if(typeof efaScoreCalc!=='function' || typeof s==='undefined') return;
+      const r=efaScoreCalc();
+      const score=Math.max(0,Math.min(1000,num(r&&r.score)));
+      const pct=score/1000;
+      const locale=(typeof lang!=='undefined' && lang==='en')?'en-US':'es-CO';
+      const sep=(typeof lang!=='undefined' && lang==='en')?'1,000':'1.000';
+
+      const orb=document.getElementById('efaOrb');
+      const orbN=document.getElementById('efaOrbNumber');
+      const big=document.getElementById('efaScoreBig');
+      const verdict=document.getElementById('efaScoreVerdict');
+      const fill=document.getElementById('efaScoreFill');
+      if(orb){ orb.style.setProperty('--size',Math.round(72+148*pct)+'px'); orb.style.setProperty('--hue',Math.round(215-170*pct)); orb.classList.toggle('master',score>=950); }
+      if(orbN) orbN.innerHTML=score.toLocaleString(locale)+'<small>/ '+sep+'</small>';
+      if(big) big.textContent=score.toLocaleString(locale);
+      if(fill) fill.style.width=(pct*100)+'%';
+
+      const verdicts = score>=950 ? [tx('🌻 Maestro EFA','🌻 EFA Master'),tx('Dominaste el sistema: liberaste flujo sin sacrificar estabilidad.','You mastered the system: you released flow without sacrificing stability.')]
+        : score>=800 ? [tx('🟡 Arquitecto del Flujo','🟡 Flow Architect'),tx('Excelente equilibrio entre productividad, crecimiento y poder adquisitivo.','Excellent balance among productivity, growth, and purchasing power.')]
+        : score>=600 ? [tx('🟠 Gobernante Adaptativo','🟠 Adaptive Governor'),tx('Buen desempeño. Aún hay flujo que puedes liberar.','Good performance. There is still flow you can release.')]
+        : score>=400 ? [tx('🟢 Optimizador de Corto Plazo','🟢 Short-Term Optimizer'),tx('Hay avances, pero algunas decisiones están creando desequilibrios.','Progress is visible, but some decisions are creating imbalances.')]
+        : score>=200 ? [tx('🔷 Economía Frágil','🔷 Fragile Economy'),tx('El sistema crece con restricciones importantes.','The system is growing under significant constraints.')]
+        : [tx('🔵 Flujo en Riesgo','🔵 Flow at Risk'),tx('Tus decisiones están deteriorando el flujo económico.','Your decisions are damaging economic flow.')];
+      if(verdict){ verdict.textContent=verdicts[0]; verdict.title=verdicts[1]; }
+
+      const names={
+        es:['Flujo','Productividad','PIB real','Empleo','Empresas','Salario real','Inflación','Deuda / PIB'],
+        en:['Flow','Productivity','Real GDP','Employment','Firms','Real wage','Inflation','Debt / GDP']
+      };
+      const labels=[
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][0],num(s.well),num(r.c.flujo)],
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][1],num(s.prod),num(r.c.productividad)],
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][2],num(s.gdp),num(r.c.pib)],
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][3],num(s.emp),num(r.c.empleo)],
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][4],num(s.firms),num(r.c.empresas)],
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][5],num(s.realw),num(r.c.salario)],
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][6],num(s.inf),num(r.c.inflacion)],
+        [names[(typeof lang!=='undefined'&&lang==='en')?'en':'es'][7],num(s.debt),num(r.c.deuda)]
+      ];
+      const grid=document.getElementById('efaScoreGrid');
+      if(grid){ grid.innerHTML=labels.map((x,i)=>'<div class="efa-mini">'+x[0]+'<b>'+((i>=6)?num(x[1]).toFixed(1)+'%':Math.round(num(x[1])))+'</b></div>').join(''); }
+
+      // Record: preserve the previous best and compare the current result against it.
+      const recordKey='las-dos-islas-efa-record';
+      let old=0; try{old=num(localStorage.getItem(recordKey));}catch(e){}
+      const best=Math.max(old,score); try{localStorage.setItem(recordKey,String(best));}catch(e){}
+      const rec=document.getElementById('efaRecord');
+      if(rec){
+        const comparison=score>old
+          ? tx(' · ¡Nueva marca!',' · New high!')
+          : score===old
+            ? tx(' · Igualaste tu récord.',' · You matched your best.')
+            : tx(' · Te faltan '+(best-score)+' puntos para superarlo.',' · You need '+(best-score)+' points to beat it.');
+        rec.innerHTML='🏆 '+tx('Récord personal','Personal best')+': <strong>'+best.toLocaleString(locale)+' / '+sep+'</strong>'+comparison;
+      }
+
+      // Current run history, without duplicating the same final render.
+      const hk='las-dos-islas-efa-history';
+      let hs=[]; try{hs=JSON.parse(localStorage.getItem(hk)||'[]'); if(!Array.isArray(hs))hs=[];}catch(e){hs=[];}
+      const already=hs[0] && Number(hs[0].score)===score && Number(hs[0].level)===Number(currentLevel);
+      if(!already) hs.unshift({score:score,level:Number(currentLevel),ts:new Date().toISOString()});
+      hs=hs.slice(0,8); try{localStorage.setItem(hk,JSON.stringify(hs));}catch(e){}
+      const hist=document.getElementById('efaHistory');
+      if(hist) hist.innerHTML=tx('Últimas partidas','Recent games')+': <b>'+hs.map((h,i)=>'#'+(i+1)+' · '+(lang==='en'?'L':'N')+h.level+' · '+h.score).join(' &nbsp;|&nbsp; ')+'</b>';
+
+      const challenge = score>=800
+        ? tx('Desafío desbloqueado: consigue 950+ y conviértete en Maestro EFA.','Challenge unlocked: reach 950+ and become an EFA Master.')
+        : score>=600
+          ? tx('Desafío: alcanza 800 puntos sin superar 15% de inflación.','Challenge: reach 800 points without exceeding 15% inflation.')
+          : tx('Desafío: supera 600 puntos manteniendo empleo ≥ 100.','Challenge: exceed 600 points while keeping employment ≥ 100.');
+      const ch=document.getElementById('efaChallenge');
+      if(ch) ch.innerHTML='🎯 <b>'+tx('PRÓXIMO DESAFÍO','NEXT CHALLENGE')+'</b> · '+challenge;
+
+      // Diagnose by normalized EFA component, but display the real economic value.
+      let strong=labels.slice().sort((a,b)=>b[2]-a[2])[0];
+      let weak=labels.slice().sort((a,b)=>a[2]-b[2])[0];
+      const fmt=(x,i)=>i>=6?num(x[1]).toFixed(1)+'%':String(Math.round(num(x[1])));
+      const diag=document.getElementById('efaDiagnosis');
+      if(diag) diag.innerHTML='🧭 <b>'+tx('Diagnóstico EFA','EFA Diagnosis')+':</b> '+tx('tu mayor fortaleza es','your greatest strength is')+' <span class="strong">'+strong[0]+' ('+fmt(strong,labels.indexOf(strong))+')</span>. '+tx('La principal oportunidad de mejora está en','The main opportunity for improvement is')+' <span class="weak">'+weak[0]+' ('+fmt(weak,labels.indexOf(weak))+')</span>. '+tx('El objetivo no es maximizar una sola variable, sino liberar flujo manteniendo el sistema equilibrado.','The goal is not to maximize a single variable, but to release flow while keeping the system balanced.');
+
+      const sub=document.querySelector('.efa-score-sub');
+      if(sub){const ss=sub.querySelectorAll('span'); if(ss[0])ss[0].textContent=tx('Tu desempeño','Your performance'); if(ss[1])ss[1].textContent=tx('Máximo estratégico de diseño: 1.000','Design strategic maximum: 1,000');}
+      const replay=document.getElementById('efaReplay'); if(replay)replay.textContent=tx('🔁 Jugar de nuevo','🔁 Play again');
+      const next=document.getElementById('efaNext'); if(next)next.textContent=tx('🚀 Siguiente nivel','🚀 Next level');
+
+      // Translate the lower, legacy end-of-game section and the decision-log heading.
+      const endH=document.querySelector('#end h2'); if(endH)endH.textContent=tx('🏁 Fin de la partida','🏁 Game over');
+      const endHelp=document.querySelector('#end .help'); if(endHelp)endHelp.innerHTML='<b>'+tx('Lectura EFA:','EFA reading:')+'</b> '+tx('no ganaste por maximizar una sola variable. Ganaste si conseguiste que el flujo productivo, el capital, el empleo y el poder adquisitivo se reforzaran entre sí.','you did not win by maximizing a single variable. You won by making productive flow, capital, employment, and purchasing power reinforce one another.');
+      const headings=document.querySelectorAll('.panel h2'); if(headings[3])headings[3].textContent=tx('🧠 Registro de decisiones','🧠 Decision log');
+      return score;
+    }catch(err){ console.error('EFA 0.3.7 authoritative renderer:',err); return null; }
+  }
+  window.efaScoreRender037=renderFinal037;
+
+  function install(){
+    if(typeof window.finish!=='function') return;
+    const prev=window.finish;
+    if(prev.__efa037) return;
+    function wrapped(){
+      try{prev.apply(this,arguments);}catch(e){console.error('finish chain:',e)}
+      setTimeout(renderFinal037,20);
+    }
+    wrapped.__efa037=true;
+    window.finish=wrapped;
+  }
+  function refreshLanguage(){
+    try{
+      if(typeof lang!=='undefined'){
+        document.documentElement.lang=lang;
+        const btn=document.getElementById('langSwitch'); if(btn)btn.textContent=lang==='en'?'ES':'EN';
+      }
+      if(document.getElementById('end')?.classList.contains('show')) renderFinal037();
+    }catch(e){console.error('language refresh:',e)}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{setTimeout(install,50);setTimeout(refreshLanguage,100);});
+  else {setTimeout(install,50);setTimeout(refreshLanguage,100);}
+  window.addEventListener('efa-language-applied',()=>setTimeout(refreshLanguage,20));
+})();
+</script>
+
+
+<script id="efa-beta038-final-bilingual-ui">
+(function(){
+  function isEN(){
+    try{return localStorage.getItem('las-dos-islas-lang')==='en';}catch(e){return false;}
+  }
+  function applyFinalBilingual(){
+    try{
+      const en=isEN();
+      // Headings: translate ALL occurrences, including the legacy lower panel.
+      document.querySelectorAll('.panel h2').forEach(h=>{
+        const t=(h.textContent||'').trim();
+        if(/Registro de decisiones|Decision log/.test(t)) h.textContent=en?'🧠 Decision log':'🧠 Registro de decisiones';
+        if(/La economía en movimiento|The economy in motion/.test(t)) h.textContent=en?'📈 The economy in motion':'📈 La economía en movimiento';
+        if(/Tablero EFA|EFA Dashboard/.test(t)) h.textContent=en?'📊 EFA Dashboard':'📊 Tablero EFA';
+      });
+
+      // The chart itself is a canvas; redraw after language changes so its label is English too.
+      if(typeof window.render==='function') { try{window.render();}catch(e){} }
+
+      // The player-facing result grid must use the active language, regardless of which
+      // renderer last painted it.
+      const grid=document.getElementById('efaScoreGrid');
+      if(grid){
+        const labels=en
+          ? ['Flow','Productivity','Real GDP','Employment','Firms','Real wage','Inflation','Debt / GDP']
+          : ['Flujo','Productividad','PIB real','Empleo','Empresas','Salario real','Inflación','Deuda / PIB'];
+        const cells=grid.querySelectorAll('.efa-mini');
+        cells.forEach((cell,i)=>{
+          if(i<labels.length){
+            const b=cell.querySelector('b');
+            const value=b?b.textContent:'';
+            cell.innerHTML=labels[i]+'<b>'+value+'</b>';
+          }
+        });
+      }
+
+      // Final-score labels and supporting cards.
+      const sub=document.querySelector('.efa-score-sub');
+      if(sub){
+        const ss=sub.querySelectorAll('span');
+        if(ss[0])ss[0].textContent=en?'Your performance':'Tu desempeño';
+        if(ss[1])ss[1].textContent=en?'Design strategic maximum: 1,000':'Máximo estratégico de diseño: 1.000';
+      }
+      const rec=document.getElementById('efaRecord');
+      if(rec && en){
+        rec.innerHTML=rec.innerHTML
+          .replace(/Récord personal/g,'Personal best')
+          .replace(/¡Nueva marca!/g,'New high!')
+          .replace(/Igualaste tu récord\./g,'You matched your best.')
+          .replace(/Te faltan ([0-9]+) puntos para superarlo\./g,'You need $1 points to beat it.');
+      }
+      const hist=document.getElementById('efaHistory');
+      if(hist && en) hist.innerHTML=hist.innerHTML.replace(/Últimas partidas/g,'Recent games');
+      const ch=document.getElementById('efaChallenge');
+      if(ch && en) ch.innerHTML=ch.innerHTML
+        .replace(/PRÓXIMO DESAFÍO/g,'NEXT CHALLENGE')
+        .replace(/Desafío desbloqueado: consigue 950\+ y conviértete en Maestro EFA\./g,'Challenge unlocked: reach 950+ and become an EFA Master.')
+        .replace(/Desafío: alcanza 800 puntos sin superar 15% de inflación\./g,'Challenge: reach 800 points without exceeding 15% inflation.')
+        .replace(/Desafío: supera 600 puntos manteniendo empleo ≥ 100\./g,'Challenge: exceed 600 points while keeping employment ≥ 100.');
+
+      // Decision-log heading and event rows.
+      document.querySelectorAll('.panel .event').forEach(el=>{
+        const es=el.dataset.es, enText=el.dataset.en;
+        if(es && enText) el.innerHTML=en?enText:es;
+      });
+    }catch(e){console.error('EFA 0.3.8 bilingual UI:',e)}
+  }
+  window.addEventListener('efa-language-applied',()=>setTimeout(applyFinalBilingualUI,0));
+  function applyFinalBilingualUI(){applyFinalBilingual();}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(applyFinalBilingual,150));
+  else setTimeout(applyFinalBilingual,150);
+  window.addEventListener('load',()=>setTimeout(applyFinalBilingual,100));
+})();
+</script>
+
+<script id="efa-beta039-final-card-lock">
+(function(){
+  function en(){ return (typeof lang!=='undefined' && lang==='en') || (localStorage.getItem('las-dos-islas-lang')==='en'); }
+  function tx(es,enText){ return en()?enText:es; }
+  function safe(v,d){ const x=Number(v); return Number.isFinite(x)?x:d; }
+  function applyFinalCardLock(){
+    try{
+      const end=document.getElementById('end');
+      if(!end || !end.classList.contains('show')) return;
+      // Let the authoritative renderer populate all data first.
+      if(typeof window.efaScoreRender037==='function') window.efaScoreRender037();
+      setTimeout(function(){
+        try{
+          const r=(typeof efaScoreCalc==='function')?efaScoreCalc():null;
+          if(!r || typeof s==='undefined') return;
+          const score=Math.round(safe(r.score,0));
+          const locale=en()?'en-US':'es-CO';
+          const sep=en()?'1,000':'1.000';
+
+          // Complete verdict translation inside the SCORE card.
+          const verdict=document.getElementById('efaScoreVerdict');
+          if(verdict){
+            const raw=(verdict.textContent||'').trim();
+            const map={
+              '🌻 Maestro EFA':'🌻 EFA Master',
+              '🟡 Arquitecto del Flujo':'🟡 Flow Architect',
+              '🟠 Gobernante Adaptativo':'🟠 Adaptive Governor',
+              '🟢 Optimizador de Corto Plazo':'🟢 Short-Term Optimizer',
+              '🔷 Economía Frágil':'🔷 Fragile Economy',
+              '🔵 Flujo en Riesgo':'🔵 Flow at Risk'
+            };
+            const rev={}; Object.keys(map).forEach(k=>rev[map[k]]=k);
+            if(en()) verdict.textContent=map[raw] || rev[raw] || (score>=950?'🌻 EFA Master':score>=800?'🟡 Flow Architect':score>=600?'🟠 Adaptive Governor':score>=400?'🟢 Short-Term Optimizer':score>=200?'🔷 Fragile Economy':'🔵 Flow at Risk');
+          }
+
+          // Translate the two score sublabels.
+          const sub=document.querySelector('.efa-score-sub');
+          if(sub){
+            const ss=sub.querySelectorAll('span');
+            if(ss[0]) ss[0].textContent=tx('Tu desempeño','Your performance');
+            if(ss[1]) ss[1].textContent=tx('Máximo estratégico de diseño: 1.000','Design strategic maximum: 1,000');
+          }
+
+          // Rebuild the personal-best comparison from the real stored record, avoiding
+          // fragile text replacement across repeated renderers.
+          const rec=document.getElementById('efaRecord');
+          if(rec){
+            let old=0; try{old=safe(localStorage.getItem('las-dos-islas-efa-record'),0)}catch(e){}
+            const best=Math.max(old,score);
+            const comparison=score>old
+              ? tx(' · ¡Nueva marca!',' · New high!')
+              : score===old
+                ? tx(' · Igualaste tu récord.',' · You matched your best.')
+                : tx(' · Te faltan '+(best-score)+' puntos para superarlo.',' · You need '+(best-score)+' points to beat it.');
+            rec.innerHTML='🏆 '+tx('Récord personal','Personal best')+': <strong>'+best.toLocaleString(locale)+' / '+sep+'</strong>'+comparison;
+          }
+
+          // Rebuild the diagnosis deterministically from normalized EFA components,
+          // while displaying the actual end-of-game economic values.
+          const names=en()
+            ? ['Flow','Productivity','Real GDP','Employment','Firms','Real wage','Inflation','Debt / GDP']
+            : ['Flujo','Productividad','PIB real','Empleo','Empresas','Salario real','Inflación','Deuda / PIB'];
+          const real=[safe(s.well,0),safe(s.prod,0),safe(s.gdp,0),safe(s.emp,0),safe(s.firms,0),safe(s.realw,0),safe(s.inf,0),safe(s.debt,0)];
+          const comp=r.c || {};
+          const normalized=[safe(comp.flujo,0),safe(comp.productividad,0),safe(comp.pib,0),safe(comp.empleo,0),safe(comp.empresas,0),safe(comp.salario,0),safe(comp.inflacion,0),safe(comp.deuda,0)];
+          let hi=0, lo=0;
+          for(let i=1;i<8;i++){ if(normalized[i]>normalized[hi])hi=i; if(normalized[i]<normalized[lo])lo=i; }
+          const metric=i=>(i>=6?real[i].toFixed(1)+'%':Math.round(real[i]));
+          const diag=document.getElementById('efaDiagnosis');
+          if(diag){
+            diag.style.display='block';
+            diag.style.visibility='visible';
+            diag.innerHTML='🧭 <b>'+tx('Diagnóstico EFA','EFA Diagnosis')+':</b> '
+              +tx('tu mayor fortaleza es','your greatest strength is')+' <span class="strong">'+names[hi]+' ('+metric(hi)+')</span>. '
+              +tx('La principal oportunidad de mejora está en','The main opportunity for improvement is')+' <span class="weak">'+names[lo]+' ('+metric(lo)+')</span>. '
+              +tx('El objetivo no es maximizar una sola variable, sino liberar flujo manteniendo el sistema equilibrado.','The goal is not to maximize a single variable, but to release flow while keeping the system balanced.');
+          }
+
+          // Keep the replay/action labels bilingual.
+          const replay=document.getElementById('efaReplay'); if(replay) replay.textContent=tx('🔁 Jugar de nuevo','🔁 Play again');
+          const next=document.getElementById('efaNext'); if(next) next.textContent=tx('🚀 Siguiente nivel','🚀 Next level');
+        }catch(e){console.error('EFA 0.3.9 final card:',e)}
+      },40);
+    }catch(e){console.error('EFA 0.3.9 lock:',e)}
+  }
+  window.addEventListener('efa-language-applied',()=>setTimeout(applyFinalCardLock,30));
+  window.addEventListener('load',()=>setTimeout(applyFinalCardLock,250));
+  const observer=new MutationObserver(()=>{
+    const end=document.getElementById('end');
+    if(end && end.classList.contains('show')) setTimeout(applyFinalCardLock,20);
+  });
+  if(document.body) observer.observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+  setTimeout(applyFinalCardLock,300);
+})();
+</script>
+
+</body>
 </html>
