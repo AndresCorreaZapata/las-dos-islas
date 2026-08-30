@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Las Dos Islas — EFA Country Simulator™ Beta 0.4.5</title>
+<title>Las Dos Islas — EFA Country Simulator™ Beta 0.6.2 · Level 3 Adaptive Build</title>
 <style>
 :root{--bg:#06111c;--panel:#0b1b2b;--panel2:#10253a;--line:#23425d;--text:#edf6ff;--muted:#9bb0c5;--accent:#55d6be;--warm:#ffd24d;--danger:#ff7b66}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#153556 0,#06111c 48%,#030a11 100%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
-button,input{font:inherit}.top{max-width:1100px;margin:0 auto;padding:20px 18px 8px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+button,input{font:inherit}.top{max-width:1100px;margin:0 auto;padding:20px 18px 8px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.topRight{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.badge{border:1px solid var(--line);background:#091725;border-radius:999px;padding:8px 12px;font-weight:800;font-size:11px}
 .wrap{max-width:1100px;margin:auto;padding:10px 18px 40px}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:12px}.panel{background:rgba(11,27,43,.94);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 12px 35px #0005}
 .panel h2{font-size:16px;margin:0 0 12px}.mission{font-size:11px;color:var(--muted);line-height:1.55;margin-top:10px}
@@ -24,8 +24,11 @@ h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.b
 .growth{display:none;background:linear-gradient(135deg,#0b2032,#112d3e);border:1px solid #315a71;border-radius:14px;padding:12px;margin-bottom:12px}.growth h3{margin:0 0 9px;font-size:14px}.growthgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.gcard{background:#081522;border:1px solid #24445c;border-radius:10px;padding:8px}.gcard span{font-size:9px;color:var(--muted)}.gcard b{display:block;font-size:18px;margin:3px 0}.bar{height:6px;background:#142b3d;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#4da8ff,#55d6be,#ffd24d);width:0}
 .score{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:center}.orbzone{min-height:240px;display:flex;align-items:center;justify-content:center}.orb{--size:90px;width:var(--size);height:var(--size);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:1000;font-size:28px;color:white;background:hsl(var(--hue),85%,54%);box-shadow:0 0 0 5px hsl(var(--hue),85%,45%,.28),0 0 45px hsl(var(--hue),85%,55%,.5);transition:all .55s ease;position:relative}.orb:after{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff9,transparent 23%),transparent}.scoremain h3{margin:0;font-size:25px}.scoretop{display:flex;justify-content:space-between;align-items:end}.meter{height:10px;background:#152d40;border-radius:99px;overflow:hidden;margin:9px 0}.meter i{display:block;height:100%;background:linear-gradient(90deg,#43b5ff,#55d6be,#ffd24d);width:0;transition:width .5s}
 .scorestats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.sbox{background:#091725;border:1px solid #1d3851;border-radius:10px;padding:8px}.sbox span{font-size:8px;color:var(--muted)}.sbox b{display:block;font-size:13px;margin-top:3px}
-.cardmsg{margin-top:10px;padding:10px;border:1px solid #24445c;background:#0a1927;border-radius:11px;font-size:10px;line-height:1.4}.muted{color:var(--muted)}.green{color:#68e28b}.gold{color:#ffd24d}.warning{color:#ffb36b}
+.investStatus{display:block;color:var(--muted);font-size:9px;line-height:1.35;margin-top:6px}.investStatus.unlocked{color:#68e28b}.investStatus.locked{color:#ffb36b}.adaptive{border-color:#315a71;background:linear-gradient(135deg,#0a1927,#10283a)}
+ .cardmsg{margin-top:10px;padding:10px;border:1px solid #24445c;background:#0a1927;border-radius:11px;font-size:10px;line-height:1.4}.muted{color:var(--muted)}.green{color:#68e28b}.gold{color:#ffd24d}.warning{color:#ffb36b}
 .overlay{position:fixed;inset:0;background:#020912ee;display:flex;align-items:center;justify-content:center;z-index:20;padding:18px}.modal{max-width:920px;width:100%;background:#0b1b2b;border:1px solid #31506f;border-radius:22px;padding:25px}.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:16px 0}.levelbtn{min-height:135px;background:#10253a;border:1px solid #31506f;color:white;border-radius:14px;text-align:left;padding:12px}.levelbtn.active{outline:2px solid var(--accent);background:#15334a}.levelbtn.locked{opacity:.35;cursor:not-allowed}.levelbtn strong{display:block;font-size:15px;margin-bottom:8px}.levelbtn small{color:#9db2c7;line-height:1.35}.modalbar{background:#071522;border-radius:12px;padding:11px;color:#b4c8d9;font-size:11px}.hidden{display:none!important}
+
+.countryView{margin-top:10px}.countryView.hidden,.level3Only.hidden{display:none!important}.countrySky{height:235px;border-radius:16px;position:relative;overflow:hidden;background:linear-gradient(#79c9ee 0 48%,#76a95d 48% 70%,#5b7f45 70% 100%);border:1px solid #397b98;transition:filter .6s ease}.countrySky:after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(170deg,transparent 0 35%,#355d42 36% 37%,transparent 38%),repeating-linear-gradient(90deg,#4f7b4a 0 12px,#5f8d52 12px 24px);opacity:.45}.countrySun{position:absolute;right:34px;top:24px;width:46px;height:46px;border-radius:50%;background:#ffd45a;box-shadow:0 0 30px #ffe79a;z-index:1}.cloud{position:absolute;width:70px;height:18px;border-radius:20px;background:#ffffff99}.cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:#ffffff99}.cloud:before{width:28px;height:28px;left:12px;top:-12px}.cloud:after{width:38px;height:38px;left:30px;top:-20px}.c1{left:16%;top:34px}.c2{left:42%;top:68px;transform:scale(.7)}.mountain{position:absolute;bottom:64px;width:0;height:0;border-left:105px solid transparent;border-right:105px solid transparent;border-bottom:110px solid #4c7a63;z-index:1}.m1{left:14%}.m2{left:34%;border-bottom-color:#416a59;transform:scale(.8)}.city{position:absolute;bottom:58px;left:38%;display:flex;align-items:flex-end;gap:5px;z-index:4}.city i{display:block;width:18px;background:#b9c9cf;border:2px solid #5d7480;box-shadow:inset 0 5px #e9f2f5}.city i:nth-child(1){height:32px}.city i:nth-child(2){height:52px}.city i:nth-child(3){height:72px}.city i:nth-child(4){height:44px}.city i:nth-child(5){height:60px}.factory{position:absolute;z-index:5;font-size:28px;filter:drop-shadow(0 3px 2px #0006)}.f1{left:10%;bottom:55px}.f2{right:27%;bottom:55px}.farm{position:absolute;right:10%;bottom:55px;font-size:40px;z-index:5}.port{position:absolute;right:2%;bottom:47px;font-size:26px;z-index:6}.road{position:absolute;background:#555c60;z-index:3;transform-origin:left center}.r1{left:0;bottom:37px;width:72%;height:12px;transform:rotate(-7deg)}.r2{left:45%;bottom:39px;width:52%;height:9px;transform:rotate(4deg)}.signal{position:absolute;top:14px;left:18px;width:28px;height:28px;border-radius:50%;background:#68e28b;color:#06111c;text-align:center;line-height:28px;font-size:12px;font-weight:900;z-index:9;box-shadow:0 0 0 5px #68e28b33}.visualCaption{display:flex;justify-content:space-between;gap:10px;margin-top:7px;font-size:10px;color:var(--muted)}.visualCaption b{color:#68e28b}.visualCaption span{font-weight:700}.countryView.stressed .countrySky{filter:saturate(.85) brightness(.92)}.countryView.crisis .countrySky{filter:saturate(.65) brightness(.78)}.countryView.recovery .countrySky{filter:saturate(.95) brightness(.98)}
 @media(max-width:850px){.grid{grid-template-columns:1fr}.score{grid-template-columns:1fr}.levels{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(2,1fr)}.island{width:150px}.growthgrid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -33,17 +36,17 @@ h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.b
 <div id="overlay" class="overlay">
  <div class="modal">
   <h1>LAS DOS ISLAS</h1>
-  <div class="sub">EFA Country Simulator™ — Beta 0.4.6 · Level Navigation Fix</div>
+  <div class="sub">EFA Country Simulator™ — Beta 0.6.3 · Level 3 — The Country · Audited</div>
   <p class="muted" id="modalIntro">Cada nivel añade una tensión económica. Primero domina los fundamentos; después aprende a crecer sin destruir el sistema.</p>
   <div class="levels" id="levels"></div>
   <div class="modalbar" id="target"></div>
-  <div class="actions"><button id="start">▶ COMENZAR NIVEL</button><button id="lang" class="secondary">EN</button></div>
+  <div class="actions"><button id="start">▶ COMENZAR NIVEL</button><button id="continueGame" class="secondary hidden">↩ CONTINUAR PARTIDA</button><button id="lang" class="secondary">EN</button></div>
  </div>
 </div>
 
 <div class="top">
- <div><div class="badge" id="badge">Nivel 1 · Fundamentos</div><h1>LAS DOS ISLAS</h1><div class="sub">EFA Country Simulator™ — prosperidad = flujo real + productividad + libertad adaptativa</div></div>
- <div style="display:flex;align-items:center;gap:8px"><button id="levelMenu" class="lang" type="button">☰ Niveles</button><div class="pill"><span id="turnLabel">Turno</span> <b id="turn">1</b>/<b id="turnMax">12</b> · <span id="yearLabel">Año</span> <b id="year">1</b></div></div>
+ <div><div class="badge" id="badge">Nivel 1 · Fundamentos</div><h1>LAS DOS ISLAS</h1><div class="sub">EFA Country Simulator™ — prosperidad = flujo real + productividad + salario real + libertad adaptativa</div></div>
+ <div class="topRight"><button id="levelMenu" class="secondary">🎮 NIVELES</button><div class="pill"><span id="turnLabel">Turno</span> <b id="turn">1</b>/<b id="turnMax">12</b> · <span id="yearLabel">Año</span> <b id="year">1</b></div></div>
 </div>
 
 <div class="wrap">
@@ -51,6 +54,17 @@ h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.b
  <section class="panel">
   <h2>🏝️ <span id="missionTitle">Tu misión</span></h2>
   <div class="islands"><div class="sun"></div><div class="island a"><span>ISLA A<br><span id="fishA" class="fish">100 🐟</span></span></div><div class="island b"><span>ISLA B<br><span class="fish">2.000 🐟</span></span></div></div>
+  <div id="countryView" class="countryView hidden">
+   <div class="countrySky">
+    <div class="countrySun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+    <div class="mountain m1"></div><div class="mountain m2"></div>
+    <div class="city"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="factory f1">🏭</div><div class="factory f2">🏭</div><div class="farm">🌾</div>
+    <div class="port">⚓ 🚢</div><div class="road r1"></div><div class="road r2"></div>
+    <div class="signal" id="visualSignal">●</div>
+   </div>
+   <div class="visualCaption"><b id="countryState">STABLE ECONOMY</b><span id="constraintVisual">Primary constraint: hidden</span></div>
+  </div>
   <div class="mission" id="mission"></div>
  </section>
  <section class="panel">
@@ -59,7 +73,9 @@ h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.b
    <div class="control"><label><span id="taxLabel">Impuestos</span><b id="taxV">30%</b></label><small id="taxHelp">Más impuesto aumenta recaudo inmediato, pero reduce el incentivo a invertir y producir.</small><input id="tax" class="range" type="range" min="10" max="55" value="30"></div>
    <div class="control"><label><span id="freeLabel">Libertad empresarial</span><b id="freeV">60</b>/100</label><small id="freeHelp">Menos fricción regulatoria favorece entrada, inversión, innovación y reasignación.</small><input id="free" class="range" type="range" min="20" max="100" value="60"></div>
    <div class="control"><label><span id="spendLabel">Gasto público</span><b id="spendV">25%</b></label><small id="spendHelp">Puede elevar capacidad productiva si es eficiente; si se dispara, presiona el déficit.</small><input id="spend" class="range" type="range" min="10" max="50" value="25"></div>
-   <div class="control"><label><span id="wageLabel">Salario mínimo</span><b id="wageV">100</b></label><small id="wageHelp">Índice nominal. Si crece muy por encima de productividad, aumenta el riesgo de inflación y desempleo.</small><input id="wage" class="range" type="range" min="80" max="160" value="100"></div>
+   <div class="control"><label><span id="wageLabel">Salario mínimo · índice nominal</span><b id="wageV">100</b></label><small id="wageHelp">Índice nominal. Si crece mucho más rápido que la productividad, presiona costos, inflación y empleo; el objetivo es elevar el salario real de forma sostenible.</small><input id="wage" class="range" type="range" min="80" max="160" value="100"></div>
+   <div class="control level3Only hidden"><label><span id="investLabel">Inversión productiva</span><b id="investV">20%</b></label><small id="investHelp">Aumenta capacidad futura, productividad y resiliencia, pero consume recursos hoy.</small><input id="invest" class="range" type="range" min="8" max="50" value="20"><span id="investStatus" class="investStatus locked">🔒 Máximo estratégico actual: 35%. Resuelve la restricción de Capital para ampliar el rango.</span></div>
+   <div class="control level3Only hidden"><label><span id="tradeLabel">Apertura comercial</span><b id="tradeV">55</b>/100</label><small id="tradeHelp">Amplía oportunidades y diversificación, pero también exposición a shocks externos.</small><input id="trade" class="range" type="range" min="20" max="90" value="55"></div>
   </div>
   <div class="actions"><button id="execute">⚡ <span id="executeText">EJECUTAR POLÍTICAS</span></button><button class="secondary" id="reset">↻ <span id="resetText">Reiniciar</span></button><button class="secondary" id="surprise">🎲 <span id="surpriseText">Política sorpresa</span></button></div>
   <div class="mission" id="eventBox"></div>
@@ -69,6 +85,7 @@ h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.b
   <div class="stats">
    <div class="stat"><span id="gdpL">PIB real</span><b id="gdp">100</b></div><div class="stat"><span id="prodL">Productividad</span><b id="prod">100</b></div><div class="stat"><span id="realwL">Salario real</span><b id="realw">100</b></div><div class="stat"><span id="empL">Empleo</span><b id="emp">100</b></div>
    <div class="stat"><span id="infL">Inflación acumulada</span><b id="inf">0.0%</b></div><div class="stat"><span id="debtL">Deuda / PIB</span><b id="debt">35.0%</b></div><div class="stat"><span id="firmsL">Empresas</span><b id="firms">100</b></div><div class="stat"><span id="wellL">Bienestar EFA</span><b id="well">100</b></div>
+   <div class="stat level3Only hidden"><span id="dispL">Ingreso disponible real</span><b id="disp">100</b></div><div class="stat level3Only hidden"><span id="resL">Resiliencia</span><b id="res">60</b></div>
   </div>
   <div class="log" id="log"></div>
  </section>
@@ -96,9 +113,10 @@ h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.b
      <div class="sbox"><span id="sf1">Flujo</span><b id="sf">—</b></div><div class="sbox"><span id="sp1">Productividad</span><b id="sp">—</b></div><div class="sbox"><span id="sg1">PIB real</span><b id="sg">—</b></div><div class="sbox"><span id="se1">Empleo</span><b id="se">—</b></div>
      <div class="sbox"><span id="sfi1">Empresas</span><b id="sfi">—</b></div><div class="sbox"><span id="sw1">Salario real</span><b id="sw">—</b></div><div class="sbox"><span id="si1">Inflación</span><b id="si">—</b></div><div class="sbox"><span id="sd1">Deuda / PIB</span><b id="sd">—</b></div>
     </div>
+    <div class="cardmsg adaptive" id="adaptiveScore">🎯 Respuesta Adaptativa EFA™: — / 100</div>
     <div class="cardmsg" id="record">🏆 Récord personal: —</div>
     <div class="cardmsg" id="diagnosis">🧭 Diagnóstico EFA: completa la partida para recibir tu lectura estratégica.</div>
-    <div class="actions"><button id="playAgain" class="hidden">🔁 Jugar de nuevo</button><button id="nextLevel" class="hidden">🚀 Siguiente nivel</button></div><div class="cardmsg" id="levelNavHint" style="margin-top:8px">☰ Usa “Niveles” para cambiar de nivel en cualquier momento.</div>
+    <div class="actions"><button id="playAgain" class="hidden">🔁 Jugar de nuevo</button><button id="nextLevel" class="hidden">🚀 Siguiente nivel</button></div>
    </div>
   </div>
  </section>
@@ -111,45 +129,59 @@ h1{font-size:28px;margin:0 0 4px}.sub{font-size:11px;color:var(--muted)}.pill,.b
 const $=id=>document.getElementById(id);
 const LEVELS={
  1:{es:"Fundamentos",en:"Fundamentals",turns:12,targetEs:"Equilibra las cuatro palancas y maximiza el bienestar EFA.",targetEn:"Balance the four levers and maximize EFA well-being."},
- 2:{es:"Crecimiento",en:"Growth",turns:14,targetEs:"Lleva el PIB real a 125+, las empresas a 105+ y el empleo a 100+.",targetEn:"Raise Real GDP to 125+, firms to 105+, and employment to 100+."}
+ 2:{es:"Crecimiento",en:"Growth",turns:14,targetEs:"Lleva el PIB real a 125+, las empresas a 105+ y el empleo a 100+.",targetEn:"Raise Real GDP to 125+, firms to 105+, and employment to 100+"},
+ 3:{es:"The Country",en:"The Country",turns:16,targetEs:"Aumenta la prosperidad real durante 16 años: mejora productividad y flujo, eleva el salario real y el ingreso disponible, y evita una fragilidad fiscal excesiva.",targetEn:"Increase real prosperity over 16 years: improve productivity and flow, raise real wages and disposable income, and avoid excessive fiscal fragility."}
 };
 const T={
  es:{
   mission:"gobierna la Isla A durante {n} turnos. Haz crecer el bienestar real, no solo las cifras nominales. La Isla B es el benchmark: no puedes copiarla; debes superarla estratégicamente.",
   mission2:"gobierna la Isla A durante 14 turnos. El objetivo cambia: crecer sin destruir empresas ni empleo. Debes convertir libertad, productividad y capital en escala sostenible.",
-  tax:"Impuestos",free:"Libertad empresarial",spend:"Gasto público",wage:"Salario mínimo",
-  taxH:"Más impuesto aumenta recaudo inmediato, pero reduce el incentivo a invertir y producir.",freeH:"Menos fricción regulatoria favorece entrada, inversión, innovación y reasignación.",spendH:"Puede elevar capacidad productiva si es eficiente; si se dispara, presiona el déficit.",wageH:"Índice nominal. Si crece muy por encima de productividad, aumenta el riesgo de inflación y desempleo.",
+  mission3:"Gobierna Aurelia durante 16 años. Haz crecer la prosperidad real mientras administras productividad, inversión, espacio fiscal, salarios reales, comercio, resiliencia y la restricción dominante oculta.",
+  tax:"Impuestos",free:"Libertad empresarial",spend:"Gasto público",wage:"Salario mínimo · índice nominal",
+  taxH:"Más impuesto aumenta recaudo inmediato, pero reduce el incentivo a invertir y producir.",freeH:"Menos fricción regulatoria favorece entrada, inversión, innovación y reasignación.",spendH:"Puede elevar capacidad productiva si es eficiente; si se dispara, presiona el déficit.",wageH:"Índice nominal. Si crece mucho más rápido que la productividad, presiona costos, inflación y empleo; el objetivo es elevar el salario real de forma sostenible.",
   execute:"EJECUTAR POLÍTICAS",reset:"Reiniciar",surprise:"Política sorpresa",chart:"La economía en movimiento",log:"Registro de decisiones",score:"EFA SCORE™",pending:"Resultado pendiente",
   diagnosis:"🧭 Diagnóstico EFA: completa la partida para recibir tu lectura estratégica.",
   growthHint:"El Nivel 2 no premia crecimiento aislado: exige escala productiva con empresas y empleo.",
-  labels:["PIB real","Productividad","Salario real","Empleo","Inflación acumulada","Deuda / PIB","Empresas","Bienestar EFA"],
+  invest:"Inversión productiva",trade:"Apertura comercial",investH:"Aumenta capacidad futura, productividad y resiliencia, pero consume recursos hoy.",tradeH:"Amplía oportunidades y diversificación, pero también exposición a shocks externos.",disp:"Ingreso disponible real",res:"Resiliencia",
+  labels:["PIB real","Productividad","Salario real","Empleo","Inflación acumulada","Deuda / PIB","Empresas","Bienestar EFA","Ingreso disponible real","Resiliencia"],
   scoreLabels:["Flujo","Productividad","PIB real","Empleo","Empresas","Salario real","Inflación","Deuda / PIB"],
-  record:"🏆 Récord personal: ",play:"🔁 Jugar de nuevo",next:"🚀 Siguiente nivel",
+  record:"🏆 Récord personal: ",play:"🔁 Jugar de nuevo",next:"🚀 Siguiente nivel",levels:"🎮 NIVELES",switchLevel:"CAMBIAR DE NIVEL",adaptiveLabel:"🎯 Respuesta Adaptativa EFA™",investLocked:"🔒 Máximo estratégico actual: 35%. Resuelve la restricción de Capital para ampliar el rango.",investUnlocked:"🔓 Rango estratégico ampliado: hasta 50%. La restricción de Capital fue resuelta.",
   verdict:["Economía Frágil","Flujo en Riesgo","Optimizador de Corto Plazo","Gobernante Adaptativo","Arquitecto del Flujo","Maestro EFA"],
   chartHelp:"La línea principal muestra el PIB real. Una política que parece mejorar una variable en el corto plazo puede deteriorar el flujo global."
  },
  en:{
   mission:"govern Island A for {n} turns. Build real well-being, not just nominal numbers. Island B is the benchmark: you cannot copy it; you must outperform it strategically.",
   mission2:"govern Island A for 14 turns. The objective changes: grow without destroying firms or employment. Turn freedom, productivity and capital into sustainable scale.",
-  tax:"Taxes",free:"Business freedom",spend:"Public spending",wage:"Minimum wage",
-  taxH:"Higher taxes raise immediate revenue, but reduce incentives to invest and produce.",freeH:"Less regulatory friction supports entry, investment, innovation and resource allocation.",spendH:"It can raise productive capacity when efficient; excessive spending pressures the deficit.",wageH:"Nominal index. If it rises far above productivity, inflation and unemployment risks increase.",
+  mission3:"Govern Aurelia for 16 years. Grow real prosperity while managing productivity, investment, fiscal space, real wages, trade, resilience and the hidden binding constraint.",
+  tax:"Taxes",free:"Business freedom",spend:"Public spending",wage:"Minimum wage · nominal index",
+  taxH:"Higher taxes raise immediate revenue, but reduce incentives to invest and produce.",freeH:"Less regulatory friction supports entry, investment, innovation and resource allocation.",spendH:"It can raise productive capacity when efficient; excessive spending pressures the deficit.",wageH:"Nominal index. If it rises much faster than productivity, it pressures costs, inflation and employment; the goal is to raise real wages sustainably.",
   execute:"EXECUTE POLICIES",reset:"Restart",surprise:"Surprise policy",chart:"The economy in motion",log:"Decision log",score:"EFA SCORE™",pending:"Result pending",
   diagnosis:"🧭 EFA Diagnosis: complete the game to receive your strategic reading.",
   growthHint:"Level 2 does not reward isolated growth: it requires productive scale with firms and employment.",
-  labels:["Real GDP","Productivity","Real wage","Employment","Cumulative inflation","Debt / GDP","Firms","EFA well-being"],
+  invest:"Productive investment",trade:"Trade openness",investH:"Builds future capacity, productivity and resilience, but uses resources today.",tradeH:"Expands opportunity and diversification, but also external exposure.",disp:"Real disposable income",res:"Resilience",
+  labels:["Real GDP","Productivity","Real wage","Employment","Cumulative inflation","Debt / GDP","Firms","EFA well-being","Real disposable income","Resilience"],
   scoreLabels:["Flow","Productivity","Real GDP","Employment","Firms","Real wage","Inflation","Debt / GDP"],
-  record:"🏆 Personal best: ",play:"🔁 Play again",next:"🚀 Next level",
+  record:"🏆 Personal best: ",play:"🔁 Play again",next:"🚀 Next level",levels:"🎮 LEVELS",switchLevel:"CHANGE LEVEL",adaptiveLabel:"🎯 EFA Adaptive Response™",investLocked:"🔒 Current strategic cap: 35%. Resolve the Capital constraint to expand the range.",investUnlocked:"🔓 Strategic range expanded: up to 50%. The Capital constraint was resolved.",
   verdict:["Fragile Economy","Flow at Risk","Short-Term Optimizer","Adaptive Governor","Flow Architect","EFA Master"],
   chartHelp:"The main line shows Real GDP. A policy that improves one variable in the short term can still damage overall flow."
  }
 };
-let lang="es",currentLevel=1,gameOver=false,best=Number(localStorage.getItem("efa-best-score")||0);
+let lang="es",currentLevel=1,gameOver=false,best=0;
+function bestKey(){return "efa-best-score-l"+currentLevel;}
+function loadBest(){const legacy=Number(localStorage.getItem("efa-best-score")||0);const k=bestKey();if(!localStorage.getItem(k)&&legacy>0&&currentLevel===3)localStorage.setItem(k,String(legacy));best=Number(localStorage.getItem(k)||0);}
 let s,history;
 
 function resetState(){
- s={turn:1,year:1,gdp:100,prod:100,realw:100,emp:100,inf:0,debt:35,firms:100,well:100,fish:100};
- history=[100];gameOver=false;
- ["tax","free","spend","wage"].forEach(id=>$(id).disabled=false);
+ if(currentLevel===3){
+   s={turn:1,year:1,gdp:100,prod:100,realw:100,emp:95,inf:3,debt:55,firms:100,well:100,fish:100,capital:100,investment:20,trade:55,resilience:60,disp:100,flow:75,primaryConstraint:"Capital",secondaryConstraint:"Logistics",constraintPressure:55,shockScar:0,adaptiveCapacity:60,adaptiveResponse:50,adaptiveWins:0,adaptiveTurns:0,capitalReliefTurns:0,investmentUnlocked:false};
+   $("tax").value=30;$("free").value=65;$("spend").value=34;$("wage").value=100;$("invest").value=20;$("trade").value=55;
+ }else{
+   // Levels 1–2 remain on their validated Game Mode baseline.
+   s={turn:1,year:1,gdp:100,prod:100,realw:100,emp:100,inf:0,debt:35,firms:100,well:100,fish:100};
+   $("tax").value=30;$("free").value=60;$("spend").value=25;$("wage").value=100;
+ }
+ loadBest();history=[100];gameOver=false;
+ ["tax","free","spend","wage","invest","trade"].forEach(id=>{if($(id))$(id).disabled=false;});
  $("playAgain").classList.add("hidden");$("nextLevel").classList.add("hidden");
 }
 function val(id){return Number($(id).value)}
@@ -163,17 +195,17 @@ function applyLang(){
  setText("turnLabel",lang==="en"?"Turn":"Turno");setText("yearLabel",lang==="en"?"Year":"Año");
  setText("missionTitle",lang==="en"?"Mission":"Tu misión");setText("economyTitle",t.chart);setText("logTitle",t.log);setText("chartTitle",t.chart);setText("scoreTitle",t.score);
  setText("taxLabel",t.tax);setText("freeLabel",t.free);setText("spendLabel",t.spend);setText("wageLabel",t.wage);
- setText("taxHelp",t.taxH);setText("freeHelp",t.freeH);setText("spendHelp",t.spendH);setText("wageHelp",t.wageH);
+ setText("taxHelp",t.taxH);setText("freeHelp",t.freeH);setText("spendHelp",t.spendH);setText("wageHelp",t.wageH);setText("investLabel",t.invest);setText("tradeLabel",t.trade);setText("investHelp",t.investH);setText("tradeHelp",t.tradeH);
  setText("executeText",t.execute);setText("resetText",t.reset);setText("surpriseText",t.surprise);
- ["gdpL","prodL","realwL","empL","infL","debtL","firmsL","wellL"].forEach((id,i)=>setText(id,t.labels[i]));
+ ["gdpL","prodL","realwL","empL","infL","debtL","firmsL","wellL","dispL","resL"].forEach((id,i)=>setText(id,t.labels[i]));
  ["sf1","sp1","sg1","se1","sfi1","sw1","si1","sd1"].forEach((id,i)=>setText(id,t.scoreLabels[i]));
- setText("playAgain",t.play);setText("nextLevel",t.next);setText("chartHelp",t.chartHelp);
- setText("growthHint",t.growthHint);setText("levelNavHint",lang==="en"?"☰ Use “Levels” to switch levels at any time.":"☰ Usa “Niveles” para cambiar de nivel en cualquier momento.");
+ setText("playAgain",t.play);setText("nextLevel",t.next);setText("chartHelp",t.chartHelp);setText("levelMenu",t.levels);
+ setText("growthHint",t.growthHint);
  renderMission();render();
 }
 function renderMission(){
  const t=T[lang],n=LEVELS[currentLevel].turns;
- $("mission").textContent=currentLevel===2?t.mission2:t.mission.replace("{n}",n);
+ $("mission").textContent=currentLevel===2?t.mission2:(currentLevel===3?t.mission3:t.mission.replace("{n}",n));
  $("turnMax").textContent=n;
 }
 function render(){
@@ -184,9 +216,29 @@ function render(){
  setText("inf",s.inf.toFixed(1)+"%");setText("debt",s.debt.toFixed(1)+"%");setText("firms",Math.round(s.firms));setText("well",Math.round(s.well));
  $("growthPanel").style.display=currentLevel===2?"block":"none";
  if(currentLevel===2){setText("growthGdp",Math.round(s.gdp));setText("growthFirm",Math.round(s.firms));setText("growthEmp",Math.round(s.emp));$("growthGdpBar").style.width=clamp(s.gdp,0,100)+"%";$("growthFirmBar").style.width=clamp(s.firms,0,100)+"%";$("growthEmpBar").style.width=clamp(s.emp,0,100)+"%";}
+ const l3=currentLevel===3;
+ document.querySelectorAll(".level3Only").forEach(e=>e.classList.toggle("hidden",!l3));
+ const islands=document.querySelector(".islands"); if(islands)islands.style.display=l3?"none":"block";
+ $("countryView").classList.toggle("hidden",!l3);
+ $("countryView").classList.toggle("stressed",l3&&s.flow<65);
+ $("countryView").classList.toggle("crisis",l3&&s.flow<45);
+ $("countryView").classList.toggle("recovery",l3&&s.flow>=65&&s.shockScar>0);
+ if(l3){
+   const investMax=s.investmentUnlocked?50:35;
+   $("invest").max=investMax;
+   if(val("invest")>investMax){$("invest").value=investMax;}
+   setText("investV",val("invest")+"%");setText("tradeV",val("trade"));setText("disp",Math.round(s.disp));setText("res",Math.round(s.resilience));setText("adaptiveScore",(lang==="en"?"🎯 EFA Adaptive Response™: ":"🎯 Respuesta Adaptativa EFA™: ")+Math.round(s.adaptiveResponse)+" / 100");
+   setText("investStatus",s.investmentUnlocked?T[lang].investUnlocked:T[lang].investLocked);
+   $("investStatus").className="investStatus "+(s.investmentUnlocked?"unlocked":"locked");
+   setText("countryState",visualState());
+   setText("constraintVisual",lang==="en"?"Primary constraint: "+s.primaryConstraint:"Restricción dominante: "+s.primaryConstraint);
+   $("visualSignal").textContent=s.flow<45?"!":"●";
+   $("visualSignal").style.background=s.flow<45?"#ff7b66":(s.flow<65?"#ffb36b":"#68e28b");
+ }
  drawChart(); 
  if(gameOver)renderScore();
 }
+function visualState(){if(s.flow<45)return lang==="en"?"ECONOMIC CRISIS":"CRISIS ECONÓMICA";if(s.flow<65)return lang==="en"?"ECONOMY UNDER STRAIN":"ECONOMÍA BAJO PRESIÓN";if(s.flow<80)return lang==="en"?"STABLE ECONOMY":"ECONOMÍA ESTABLE";return lang==="en"?"PROSPERING ECONOMY":"ECONOMÍA PRÓSPERA";}
 function drawChart(){
  const c=$("chart"),ctx=c.getContext("2d"),w=c.width=c.clientWidth*2,h=c.height=c.clientHeight*2;
  ctx.clearRect(0,0,w,h);ctx.scale(2,2);const W=w/2,H=h/2;
@@ -194,7 +246,7 @@ function drawChart(){
  for(let i=1;i<5;i++){let y=i*H/5;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
  if(history.length<2)return;
  const min=Math.min(...history)-5,max=Math.max(...history)+5,span=Math.max(1,max-min);
- ctx.strokeStyle="#55d6be";ctx.lineWidth=3;ctx.beginPath();
+ ctx.strokeStyle=currentLevel===3?"#ffd24d":"#55d6be";ctx.lineWidth=3;ctx.beginPath();
  history.forEach((v,i)=>{let x=i*(W-10)/(history.length-1)+5,y=H-((v-min)/span)*(H-10)-5;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();
 }
 function log(es,en){
@@ -202,9 +254,183 @@ function log(es,en){
 }
 function surprise(){
  $("tax").value=10+Math.floor(Math.random()*46);$("free").value=20+Math.floor(Math.random()*81);$("spend").value=10+Math.floor(Math.random()*41);$("wage").value=80+Math.floor(Math.random()*81);
+ if(currentLevel===3){const max=s.investmentUnlocked?50:35;$("invest").value=8+Math.floor(Math.random()*(max-7));$("trade").value=20+Math.floor(Math.random()*71);}
  $("eventBox").textContent=lang==="en"?"🎲 Surprise policy loaded. Execute it to see what happens.":"🎲 Política sorpresa cargada. Ejecútala para ver qué ocurre.";render();
 }
+function adaptiveQuality(constraint,tax,free,spend,wage,invest,trade){
+  let q=50;
+  if(constraint==="Capital"){
+    if(invest>=24)q+=30; else if(invest>=20)q+=18;
+    if(tax<=32)q+=10; if(spend<=36)q+=5;
+  }else if(constraint==="Logistics"){
+    if(invest>=22)q+=18; if(trade>=45&&trade<=70)q+=18; if(trade>78)q-=18;
+  }else if(constraint==="Energy"){
+    if(invest>=24)q+=22; if(trade<=70)q+=12; if(spend<=38)q+=5;
+  }else if(constraint==="Finance" || constraint==="Fiscal space"){
+    if(tax>=30)q+=18; if(spend<=34)q+=18; if(wage<=110)q+=8; if(spend>42)q-=20;
+  }else if(constraint==="Labor productivity"){
+    if(invest>=20)q+=20; if(free>=65)q+=18; if(wage<=110)q+=8; if(invest<16)q-=15;
+  }else if(constraint==="External demand"){
+    if(trade>=60)q+=28; if(free>=60)q+=10; if(trade<45)q-=18;
+  }
+  return clamp(q,0,100);
+}
+function adaptiveLabel(){
+  const r=Math.round(s.adaptiveResponse||50);
+  if(r>=85)return lang==="en"?"Exceptional adaptation":"Adaptación excepcional";
+  if(r>=70)return lang==="en"?"Strong adaptation":"Adaptación sólida";
+  if(r>=55)return lang==="en"?"Adaptive":"Adaptativa";
+  if(r>=40)return lang==="en"?"Inconsistent adaptation":"Adaptación inconsistente";
+  return lang==="en"?"Reactive / misaligned":"Reactiva / desalineada";
+}
+function executeLevel3(){
+ if(gameOver)return;
+ const maxTurns=LEVELS[3].turns;if(s.turn>maxTurns)return;
+ const tax=val("tax"),free=val("free"),spend=val("spend"),wage=val("wage"),invest=val("invest"),trade=val("trade");
+ s.invest=invest;s.trade=trade;
+ const t=s.turn;
+  const decisionConstraint=s.primaryConstraint;
+  const investMax=s.investmentUnlocked?50:35;
+  if(invest>investMax){$("invest").value=investMax;}
+ // Planned scenario events: one predictable early signal, then randomized shocks.
+ const events=[
+  {es:"🟡 Señal: capacidad productiva ajustándose",en:"🟡 Signal: productive capacity is tightening",type:"signal"},
+  {es:"💡 Innovación y aprendizaje",en:"💡 Innovation and learning",type:"good"},
+  {es:"🚢 Congestión logística",en:"🚢 Logistics congestion",type:"logistics"},
+  {es:"⚡ Choque energético",en:"⚡ Energy shock",type:"energy"},
+  {es:"💰 Condiciones financieras más estrictas",en:"💰 Tighter financial conditions",type:"finance"},
+  {es:"🌎 Demanda externa más débil",en:"🌎 Weaker external demand",type:"external"},
+  {es:"🌱 Recuperación de inversión",en:"🌱 Investment recovery",type:"good"}
+ ];
+ let ev;
+ if(t===3) ev=events[0];
+ else if(t===8) ev=events[3];
+ else if(t===14) ev=events[5];
+ else ev=events[(t*7+Math.floor(s.gdp+s.prod))%events.length];
+
+ // Policy transmission: moderate, lagged and nonlinear.
+ const taxIncentive=(30-tax)*0.055;
+ const freedomEffect=(free-65)*0.025;
+ const spendProductive=(spend-34)*0.018;
+ const wagePressure=(wage-100)-((s.prod-100)*0.55);
+ const investmentImpulse=(invest-20)*0.075;
+ const tradeImpulse=(trade-55)*0.018;
+
+ // Capital accumulation has a lagged response.
+ const capitalGain=Math.max(-1.2, investmentImpulse + (30-tax)*0.018 + (free-65)*0.012 + (spend-34)*0.010);
+ s.capital=clamp(s.capital + capitalGain + (s.shockScar>0?0.15:0),70,145);
+
+ // Productivity: capital + freedom + investment + trade, with diminishing returns.
+ let prodGrowth=0.45 + (s.capital-100)*0.018 + (free-65)*0.020 + (invest-20)*0.050 + (trade-55)*0.010;
+ prodGrowth=clamp(prodGrowth,-1.5,2.4);
+ if(ev.type==="good")prodGrowth+=0.35;
+ if(ev.type==="logistics")prodGrowth-=0.45;
+ if(ev.type==="energy")prodGrowth-=0.65;
+ if(ev.type==="finance")prodGrowth-=0.35;
+ if(ev.type==="external")prodGrowth-=0.20;
+ s.prod=clamp(s.prod*(1+prodGrowth/100),75,145);
+
+ // Inflation: demand/cost pressure minus productivity, centered around a healthy 2-4% zone.
+ let inflFlow=0.08 + Math.max(0,wagePressure)*0.035 + Math.max(0,spend-38)*0.030 + Math.max(0,trade-75)*0.010 - Math.max(0,prodGrowth)*0.10;
+ if(tax>40) inflFlow+=0.025;
+ if(ev.type==="energy")inflFlow+=1.15;
+ if(ev.type==="logistics")inflFlow+=0.45;
+ if(ev.type==="finance")inflFlow-=0.15;
+ inflFlow=clamp(inflFlow,-0.30,2.0);
+ s.inf=clamp(s.inf+inflFlow,0.5,18);
+
+ // Real wage: nominal wage transmission + productivity, then price level effect.
+ const wageTransmission=0.55 + clamp((s.emp-95)/100, -0.10, 0.10) + (free-65)*0.002;
+ const nominalWageGrowth=(wage-100)*0.010 + Math.max(0,prodGrowth)*wageTransmission*0.42;
+ s.realw=clamp(s.realw*(1+nominalWageGrowth/100)/(1+inflFlow/100),65,145);
+
+ // Employment responds to growth, wage pressure and business freedom.
+ let empGrowth=prodGrowth*0.40 + (free-65)*0.008 - Math.max(0,wagePressure)*0.022 - Math.max(0,tax-42)*0.018;
+ if(ev.type==="energy")empGrowth-=0.55;
+ if(ev.type==="external")empGrowth-=0.35;
+ if(ev.type==="good")empGrowth+=0.20;
+ s.emp=clamp(s.emp*(1+empGrowth/100),65,125);
+
+ // Firms and output.
+ s.firms=clamp(s.firms*(1+(free-65)*0.0015-(tax-30)*0.0007-Math.max(0,wagePressure)*0.0015),55,135);
+ const capacityPressure=clamp((s.gdp-100)/80 + (s.capital-100)/120,0,1);
+ let outputGrowth=prodGrowth*0.55 + investmentImpulse*0.35 + tradeImpulse*0.20 + (s.emp-100)*0.006;
+ outputGrowth=clamp(outputGrowth,-2.2,3.0);
+ if(ev.type==="energy")outputGrowth-=0.9;
+ if(ev.type==="logistics")outputGrowth-=0.65;
+ if(ev.type==="finance")outputGrowth-=0.45;
+ if(ev.type==="external")outputGrowth-=0.35;
+ if(capacityPressure>0.85)outputGrowth-=0.35;
+ s.gdp=clamp(s.gdp*(1+outputGrowth/100),70,150);
+
+ // Fiscal balance and debt: gradual accumulation.
+ const revenue=(tax-30)*0.45;
+ const spendingPressure=(spend-34)*0.62;
+ const wageBill=Math.max(0,wage-100)*0.035;
+ const deficit=spendingPressure-revenue+wageBill;
+ s.debt=clamp(s.debt + deficit*0.18 - Math.max(0,outputGrowth)*0.08,35,130);
+
+ // Disposable income separates taxes from real wages.
+ s.disp=clamp(s.realw*(1-tax/100)/(1-30/100),45,145);
+
+ // Resilience: investment in resilience is implicit in diversification, trade and fiscal space.
+ let resChange=(invest-20)*0.20 + Math.abs(trade-55)*0.035 - Math.max(0,deficit)*0.04 - (ev.type==="energy"?1.4:0);
+ if(ev.type==="good")resChange+=0.25;
+ s.resilience=clamp(s.resilience+resChange,20,95);
+
+ // Shock scars and recovery.
+ if(ev.type==="energy"){s.shockScar=Math.min(8,s.shockScar+3);s.gdp*=1-(1-s.resilience/100)*0.065;}
+ if(ev.type==="logistics"){s.shockScar=Math.min(8,s.shockScar+2);s.gdp*=1-(1-s.resilience/100)*0.040;}
+ if(ev.type==="finance"){s.shockScar=Math.min(8,s.shockScar+2);s.gdp*=1-(1-s.resilience/100)*0.030;}
+ if(ev.type==="external"){s.shockScar=Math.min(8,s.shockScar+2);s.gdp*=1-(1-s.resilience/100)*0.035;}
+ if(s.shockScar>0){
+   const recovery=0.45+s.resilience*0.018;
+   s.shockScar=Math.max(0,s.shockScar- recovery/2);
+ }
+
+ // Dynamic constraints.
+ const pressures={
+  "Capital":clamp(72-(s.capital-100)*1.15-(invest-20)*1.8,8,95),
+  "Logistics":clamp(42+(s.gdp-100)*0.42+(trade-55)*0.30+(ev.type==="logistics"?30:0)-(s.resilience-60)*0.18,8,95),
+  "Energy":clamp(25+(ev.type==="energy"?48:0)+(trade-55)*0.10+(s.gdp-100)*0.18-(s.resilience-60)*0.15,8,95),
+  "Fiscal space":clamp(28+(s.debt-55)*0.62+(spend-34)*0.35-(tax-30)*0.10,8,95),
+  "Labor productivity":clamp(45-(s.prod-100)*0.65+Math.max(0,100-s.emp)*0.25,8,95),
+  "External demand":clamp(25+(70-trade)*0.20+(ev.type==="external"?45:0),8,95)
+ };
+ const sorted=Object.entries(pressures).sort((a,b)=>b[1]-a[1]);
+ s.primaryConstraint=sorted[0][0];s.secondaryConstraint=sorted[1][0];s.constraintPressure=sorted[0][1];
+
+ // EFA Adaptive Response: judge the policy against the constraint that existed BEFORE the decision.
+ const q=adaptiveQuality(decisionConstraint,tax,free,spend,wage,invest,trade);
+ s.adaptiveTurns++;
+ s.adaptiveResponse=((s.adaptiveResponse*(s.adaptiveTurns-1))+q)/s.adaptiveTurns;
+ if(q>=70)s.adaptiveWins++;
+
+ // Strategic unlock: Investment >35% becomes available only after the Capital constraint is genuinely relieved.
+ const capitalRelieved=pressures["Capital"]<45 && s.primaryConstraint!=="Capital";
+ s.capitalReliefTurns=capitalRelieved?s.capitalReliefTurns+1:0;
+ if(!s.investmentUnlocked && s.capitalReliefTurns>=2){
+   s.investmentUnlocked=true;
+   log("🔓 Rango estratégico de inversión desbloqueado: hasta 50%. Capital ya no es la restricción dominante.","🔓 Strategic investment range unlocked: up to 50%. Capital is no longer the binding constraint.");
+ }
+
+ // Flow integrates productivity, capacity, employment, real wage and stability, then applies constraint drag.
+ const stability=clamp(100-Math.abs(s.inf-3)*8-Math.max(0,s.debt-65)*0.30,20,100);
+ const constraintFactor=clamp(1-s.constraintPressure/220,0.45,1);
+ s.flow=clamp(0.27*s.prod+0.22*s.capital+0.18*s.emp+0.15*s.realw+0.18*stability,20,125)*constraintFactor;
+ s.well=clamp(0.32*s.gdp+0.22*s.realw+0.18*s.emp+0.14*s.firms+0.14*s.flow-0.10*s.inf-0.05*s.debt,20,180);
+
+ history.push(s.gdp);
+ const signal=(ev.type==="signal")?" · "+(lang==="en"?"Watch the constraint signals.":"Observa las señales de restricción."):
+   " · "+(lang==="en"?"Primary constraint: ":"Restricción dominante: ")+s.primaryConstraint;
+ const es=`Año ${t}: <strong>${ev.es}</strong> · Productividad ${fmt(prodGrowth)}% · Inflación ${s.inf.toFixed(1)}% · PIB real ${Math.round(s.gdp)} · Respuesta EFA ${Math.round(q)}/100${signal}`;
+ const en=`Year ${t}: <strong>${ev.en}</strong> · Productivity ${fmt(prodGrowth)}% · Inflation ${s.inf.toFixed(1)}% · Real GDP ${Math.round(s.gdp)} · EFA response ${Math.round(q)}/100${signal}`;
+ log(es,en);
+ s.turn++;s.year=s.turn;render();
+ if(s.turn===maxTurns+1)finish();
+}
 function executeTurn(){
+ if(currentLevel===3){executeLevel3();return;}
  if(gameOver)return;
  const maxTurns=LEVELS[currentLevel].turns;if(s.turn>maxTurns)return;
  const tax=val("tax"),free=val("free"),spend=val("spend"),wage=val("wage");
@@ -247,20 +473,48 @@ function executeTurn(){
  if(s.turn===maxTurns+1)finish();
 }
 function scoreCalc(){
- const flow=clamp(s.gdp*.42+s.firms*.28+s.emp*.20+s.realw*.10,0,180);
- const metrics=[
-  clamp(flow,0,180),clamp(s.prod,0,180),clamp(s.gdp,0,180),clamp(s.emp,0,180),
-  clamp(s.firms,0,180),clamp(s.realw,0,180),clamp(130-s.inf,0,130),clamp(130-s.debt*.65,0,130)
- ];
- let weights=[.17,.14,.16,.13,.12,.10,.09,.09],raw=0;
- metrics.forEach((m,i)=>raw+=clamp((m-35)/(180-35),0,1)*weights[i]);
- let levelBonus=currentLevel===2?((s.gdp>=125?25:0)+(s.firms>=105?25:0)+(s.emp>=100?25:0)):0;
- return {score:Math.round(clamp(raw*925+levelBonus,0,1000)),metrics};
+  if(currentLevel===3){
+   const flow=clamp(s.flow,0,100), prod=clamp(s.prod,0,130), gdp=clamp(s.gdp,0,140), emp=clamp(s.emp,0,120), realw=clamp(s.realw,0,140), disp=clamp(s.disp,0,145);
+   // Audited 1,000-point EFA Score: real wages and real disposable income are explicit,
+   // while flow and productive capacity remain the dominant strategic dimensions.
+   const flowPts=flow/100*180;
+   const prodPts=clamp((prod-80)/50,0,1)*130;
+   const realwPts=clamp((realw-85)/35,0,1)*100;
+   const dispPts=clamp((disp-70)/60,0,1)*90;
+   const wellPts=clamp((s.well-50)/90,0,1)*120;
+   const empPts=clamp((emp-70)/40,0,1)*80;
+   const fiscalPts=clamp(1-Math.max(0,s.debt-55)/60,0,1)*75;
+   const monetaryPts=clamp(1-Math.abs(s.inf-3)/12,0,1)*75;
+   const capitalPts=clamp((s.capital-80)/50,0,1)*50;
+   const resiliencePts=clamp((s.resilience-20)/75,0,1)*50;
+   const constraintPts=(s.constraintPressure<45?25:s.constraintPressure<60?18:s.constraintPressure<75?10:3);
+   const adaptivePts=clamp(s.adaptiveResponse,0,100)*0.25;
+   let gross=flowPts+prodPts+realwPts+dispPts+wellPts+empPts+fiscalPts+monetaryPts+capitalPts+resiliencePts+constraintPts+adaptivePts;
+   const fragility=Math.min(140,Math.max(0,(s.debt-75)*1.2)+Math.max(0,s.inf-7)*5+Math.max(0,55-s.resilience)*0.8+Math.max(0,s.constraintPressure-70)*0.8);
+   const score=Math.round(clamp(gross-fragility,0,1000));
+   return {score,metrics:[flow,prod,gdp,emp,clamp(s.firms,0,140),realw,s.inf,s.debt],fragility,adaptive:Math.round(s.adaptiveResponse),performance:Math.round(clamp((flow+prod/1.3+gdp/1.4+emp/1.2+realw/1.4)/5,0,100)),robustness:Math.round(clamp(0.45*s.resilience+0.35*(100-Math.max(0,s.debt-55)*0.8)+0.20*(100-Math.max(0,s.constraintPressure-45)),0,100))};
+  }
+  const flow=clamp(s.gdp*.42+s.firms*.28+s.emp*.20+s.realw*.10,0,180);
+  const metrics=[clamp(flow,0,180),clamp(s.prod,0,180),clamp(s.gdp,0,180),clamp(s.emp,0,180),clamp(s.firms,0,180),clamp(s.realw,0,180),clamp(130-s.inf,0,130),clamp(130-s.debt*.65,0,130)];
+  let weights=[.17,.14,.16,.13,.12,.10,.09,.09],raw=0;metrics.forEach((m,i)=>raw+=clamp((m-35)/(180-35),0,1)*weights[i]);
+  let levelBonus=currentLevel===2?((s.gdp>=125?25:0)+(s.firms>=105?25:0)+(s.emp>=100?25:0)):0;
+  return {score:Math.round(clamp(raw*925+levelBonus,0,1000)),metrics};
 }
 function verdict(score){
  if(score>=950)return T[lang].verdict[5];if(score>=820)return T[lang].verdict[4];if(score>=680)return T[lang].verdict[3];if(score>=520)return T[lang].verdict[2];if(score>=350)return T[lang].verdict[1];return T[lang].verdict[0];
 }
 function diagnosis(score){
+ if(currentLevel===3){
+  const r=scoreCalc(), parts=[];
+  if(s.primaryConstraint)parts.push(lang==="en"?"the binding constraint is "+s.primaryConstraint.toLowerCase():"la restricción dominante es "+s.primaryConstraint.toLowerCase());
+  if(s.realw<100)parts.push(lang==="en"?"real wages have not recovered":"el salario real aún no se ha recuperado");
+  if(s.debt>90)parts.push(lang==="en"?"fiscal space is under pressure":"el espacio fiscal está bajo presión");
+  if(s.resilience<55)parts.push(lang==="en"?"resilience is low":"la resiliencia es baja");
+  const base=parts.join("; ");
+  return lang==="en"
+   ? "🧭 EFA Diagnosis: "+base+". Performance "+r.performance+"/100 · Robustness "+r.robustness+"/100. The next move is to adapt policy to the current constraint."
+   : "🧭 Diagnóstico EFA: "+base+". Desempeño "+r.performance+"/100 · Robustez "+r.robustness+"/100. El siguiente movimiento es adaptar la política a la restricción actual.";
+ }
  if(currentLevel===2){
   const parts=[];
   if(s.gdp<125)parts.push(lang==="en"?"GDP is below the growth threshold":"el PIB está por debajo del umbral de crecimiento");
@@ -279,9 +533,10 @@ function renderScore(){
  const size=Math.round(78+145*p),hue=Math.round(215-170*p);
  $("orb").style.setProperty("--size",size+"px");$("orb").style.setProperty("--hue",hue);
  setText("orbNumber",score);setText("scoreBig",score+" / 1.000");setText("verdict",verdict(score));$("meter").style.width=(p*100)+"%";
+ if(currentLevel===3){setText("record",T[lang].record+best+" / 1.000");}
  const ids=["sf","sp","sg","se","sfi","sw","si","sd"],vals=[Math.round(r.metrics[0]),Math.round(s.prod),Math.round(s.gdp),Math.round(s.emp),Math.round(s.firms),Math.round(s.realw),s.inf.toFixed(1)+"%",s.debt.toFixed(1)+"%"];
  ids.forEach((id,i)=>setText(id,vals[i]));
- if(score>best){best=score;localStorage.setItem("efa-best-score",best)}
+ if(score>best){best=score;localStorage.setItem(bestKey(),String(best))}
  const gap=best-score;
  setText("record",T[lang].record+best+" / 1.000"+(gap>0?(lang==="en"?" · "+gap+" points to beat it.":" · faltan "+gap+" puntos para superarlo."):(lang==="en"?" · New personal best!":" · ¡Nuevo récord personal!")));
  setText("diagnosis",diagnosis(score));
@@ -289,13 +544,23 @@ function renderScore(){
  if(currentLevel<2 || score>=700)$("nextLevel").classList.remove("hidden");
 }
 function finish(){
- gameOver=true;renderScore();
- log(lang==="en"?"🏁 Game over — your EFA result is now calculated.":"🏁 Fin de la partida — tu resultado EFA ha sido calculado.",
-     lang==="en"?"🏁 Game over — your EFA result is now calculated.":"🏁 Fin de la partida — tu resultado EFA ha sido calculado.");
-}
-function openLevelMenu(){
+ gameOver=true;
+ let passed=false;
+ if(currentLevel===1) passed=s.well>=105;
+ else if(currentLevel===2) passed=s.gdp>=125&&s.firms>=105&&s.emp>=100;
+ else if(currentLevel===3){const r=scoreCalc();passed=r.score>=700&&s.realw>=100&&s.inf<=10&&s.debt<=100;}
+ if(passed){
+   const previous=Number(localStorage.getItem("las-dos-islas-unlock")||2);
+   localStorage.setItem("las-dos-islas-unlock",String(Math.max(previous,Math.min(3,currentLevel+1))));
+ }
+ renderScore();
+ log(lang==="en"
+   ? (passed?"🏆 Level cleared. Your strategic performance unlocked the next challenge.":"⚠️ Level not cleared. Study the diagnosis and adapt your next run.")
+   : (passed?"🏆 Nivel superado. Tu desempeño estratégico desbloqueó el siguiente desafío.":"⚠️ Nivel no superado. Estudia el diagnóstico y adapta tu próxima partida."),
+   lang==="en"
+   ? (passed?"🏆 Level cleared. Your strategic performance unlocked the next challenge.":"⚠️ Level not cleared. Study the diagnosis and adapt your next run.")
+   : (passed?"🏆 Nivel superado. Tu desempeño estratégico desbloqueó el siguiente desafío.":"⚠️ Nivel no superado. Estudia el diagnóstico y adapta tu próxima partida."));
  populateLevels();
- $("overlay").classList.remove("hidden");
 }
 function startLevel(n){
  currentLevel=n;resetState();applyLang();$("overlay").classList.add("hidden");$("log").innerHTML="";
@@ -303,27 +568,32 @@ function startLevel(n){
 }
 function populateLevels(){
  const box=$("levels");box.innerHTML="";
- [1,2].forEach(n=>{
-  const b=document.createElement("button");b.className="levelbtn"+(n===1?" active":"");b.dataset.n=n;
-  b.innerHTML="<strong>"+n+" · "+LEVELS[n][lang]+"</strong><small>"+(n===1?(lang==="en"?"Learn the four levers.":"Aprende las cuatro palancas."):(lang==="en"?"Grow without destroying firms or employment.":"Crece sin destruir empresas ni empleo."))+"</small>";
-  b.onclick=()=>{document.querySelectorAll(".levelbtn").forEach(x=>x.classList.remove("active"));b.classList.add("active");currentLevel=n;setText("target",LEVELS[n][lang==="en"?"targetEn":"targetEs"]);applyLang()};
+ const unlocked=Math.max(2,Number(localStorage.getItem("las-dos-islas-unlock")||2));
+ [1,2,3].forEach(n=>{
+  const b=document.createElement("button");b.className="levelbtn"+(n===currentLevel?" active":"")+(n>unlocked?" locked":"");b.dataset.n=n;
+  const desc=n===1?(lang==="en"?"Learn the four levers.":"Aprende las cuatro palancas."):n===2?(lang==="en"?"Grow without destroying firms or employment.":"Crece sin destruir empresas ni empleo."):(lang==="en"?"Govern a country: productivity, fiscal space, trade, resilience and hidden constraints.":"Gobierna un país: productividad, espacio fiscal, comercio, resiliencia y restricciones ocultas.");
+  b.innerHTML="<strong>"+n+" · "+LEVELS[n][lang]+"</strong><small>"+desc+(n>unlocked?" 🔒":"")+"</small>";
+  b.onclick=()=>{if(n>unlocked)return;currentLevel=n;resetState();$("log").innerHTML="";applyLang();$("overlay").classList.add("hidden");$("continueGame").classList.add("hidden");$("start").textContent=lang==="en"?"▶ START LEVEL":"▶ COMENZAR NIVEL";};
   box.appendChild(b);
  });
- setText("target",LEVELS[1][lang==="en"?"targetEn":"targetEs"]);
+ setText("target",LEVELS[currentLevel][lang==="en"?"targetEn":"targetEs"]);
 }
+function openLevelMenu(){populateLevels();$("start").textContent=T[lang].switchLevel;$("continueGame").classList.remove("hidden");$("overlay").classList.remove("hidden");}
+function closeLevelMenu(){$("overlay").classList.add("hidden");$("continueGame").classList.add("hidden");$("start").textContent=lang==="en"?"▶ START LEVEL":"▶ COMENZAR NIVEL";}
 function init(){
  resetState();populateLevels();applyLang();
 }
-["tax","free","spend","wage"].forEach(id=>$(id).addEventListener("input",render));
+["tax","free","spend","wage","invest","trade"].forEach(id=>$(id).addEventListener("input",render));
 $("execute").addEventListener("click",executeTurn);$("surprise").addEventListener("click",surprise);
 $("reset").addEventListener("click",()=>{resetState();$("log").innerHTML="";applyLang()});
 $("playAgain").addEventListener("click",()=>{resetState();$("log").innerHTML="";applyLang()});
-$("nextLevel").addEventListener("click",()=>{if(currentLevel<2){currentLevel=2;resetState();applyLang();$("overlay").classList.add("hidden");$("log").innerHTML="";}});
-$("lang").addEventListener("click",()=>{lang=lang==="es"?"en":"es";$("lang").textContent=lang==="es"?"EN":"ES";populateLevels();applyLang();});
-$("start").addEventListener("click",()=>startLevel(currentLevel));$("levelMenu").addEventListener("click",openLevelMenu);
+$("nextLevel").addEventListener("click",()=>{if(currentLevel<3){currentLevel+=1;localStorage.setItem("las-dos-islas-unlock",String(Math.max(Number(localStorage.getItem("las-dos-islas-unlock")||2),currentLevel)));resetState();populateLevels();applyLang();}});
+$("lang").addEventListener("click",()=>{lang=lang==="es"?"en":"es";$("lang").textContent=lang==="es"?"EN":"ES";populateLevels();applyLang();if(!$("overlay").classList.contains("hidden"))$("start").textContent=T[lang].switchLevel;});
+$("start").addEventListener("click",()=>{startLevel(currentLevel);$("continueGame").classList.add("hidden");});
+$("levelMenu").addEventListener("click",openLevelMenu);
+$("continueGame").addEventListener("click",closeLevelMenu);
 init();
 })();
 </script>
 </body>
 </html>
-<script>window.EFA_BETA_BUILD="0.4.6-LEVEL-NAVIGATION-FIX";</script>
