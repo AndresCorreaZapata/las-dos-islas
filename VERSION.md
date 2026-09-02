@@ -1,80 +1,72 @@
-# Las Dos Islas — EFA Country Simulator™
+Las Dos Islas™ — EFA Country Simulator™
 
-## Version History
+Version History
 
-### v0.6.3 — Level 3 Public Stable
-**Date:** 2026-08-30  
-**Status:** Public Stable
+0.6.3-public-web — Public Landing + Simulator Architecture
 
-This release introduces Level 3 — The Country, extending the Las Dos Islas EFA Country Simulator™ from an economic strategy game into a country-level adaptive policy simulation.
+Status: Public Web Stable
+Date: 2026-09-01
 
-### Included in v0.6.3
+This release documents the validated public web architecture surrounding the stable v0.6.3 simulator engine.
 
-- Level 1 — Fundamentals
-- Level 2 — Growth
-- Level 3 — The Country
-- 16-year country simulation
-- Productive investment
-- Trade openness
-- Real disposable income
-- Resilience
-- Dynamic EFA binding constraints
-- Capital constraint and strategic investment unlock
-- Logistics, Energy, Fiscal Space, Labor Productivity and External Demand constraints
-- EFA Adaptive Response™
-- EFA SCORE™ / 1,000
-- Real wage and productivity interaction
-- Inflation and fiscal fragility
-- Dynamic country-state visualization
-- Spanish / English interface
-- Personal best score
-- EFA diagnosis
-- Persistent level progression through localStorage
+Included
 
-### Validation
+Public Landing Page as the principal entry point.
 
-Level 3 was extensively tested through complete Level 1 → Level 2 → Level 3 playthroughs before publication.
+game.html preserved as the dedicated simulator entry.
 
-The economic engine was stress-tested across conservative, populist, investment-heavy, high-trade and adaptive policy strategies.
+Landing → Game navigation.
 
-### Previous Public Stable
+Public access to Levels 1–3.
 
-### v0.4.6 — Public Stable
+Landing visual identity and hero artwork.
 
-Previous public release containing:
+Updated web app entry configuration.
 
-- Level 1 — Fundamentals
-- Level 2 — Growth
-- Persistent level navigation
-- EFA SCORE™
-- EFA diagnosis
-- Personal best record
-- Spanish / English interface
+Service Worker cache updated to include both Landing and Game.
 
-The v0.4.6 release and tag remain preserved as the historical public-stable checkpoint.
+Public validation in an incognito browser session.
 
-### Earlier Development Milestones
+Complete Level 1 → Level 2 → Level 3 playthrough successfully validated.
 
-### v0.3.9 — Stable Milestone
+Important baseline
 
-Initial bilingual public web build including:
+The economic simulator engine remains v0.6.3 — Level 3 Public Stable.
 
-- Level 1 — Fundamentals
-- 12-turn economic simulation
-- EFA SCORE™ / 1,000
-- Dynamic score sphere
-- Personal best score
-- EFA diagnosis
-- Decision log
-- Real economic indicators
-- Browser persistence through localStorage
+This public-web release does not change the fundamental economic parameters of v0.6.3. It establishes the public presentation and navigation architecture around the validated simulator.
 
----
+0.6.3 — Level 3 Public Stable
 
-## Project
+Status: Stable baseline
 
-**Las Dos Islas — EFA Country Simulator™**
+Version 0.6.3 is the validated stable simulator engine and remains the reference baseline for future development.
 
-Created by **Andrés Correa Zapata**
+Included
 
-Framework: **EFA — Estrategias de Flujo Adaptativo**
+Levels 1–3 integrated.
+
+Level 3 Country simulation.
+
+Strategic decision system.
+
+Dynamic EFA constraints.
+
+Capital constraints and strategic lock.
+
+Logistics, energy, capital and external-demand disruptions.
+
+Adaptive response mechanics.
+
+EFA SCORE™ 1000.
+
+Real wage and real disposable-income dimensions.
+
+Wage/productivity pedagogical signal.
+
+Dynamic evolution of economic indicators.
+
+Validation
+
+The simulator was tested through complete playthroughs from Level 1 through Level 3 and confirmed functional and economically coherent.
+
+Policy: v0.6.3 remains frozen as the stable baseline. Future levels are developed as new versioned work.
